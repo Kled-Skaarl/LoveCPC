@@ -43,6 +43,7 @@
 	border-radius: 30upx;
 	padding: 2upx 30upx;
 	width: 600upx;
+	background-color: #ffffff;
 	.iconfont{
 		font-size: 40upx;
 	}

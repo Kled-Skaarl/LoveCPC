@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "mp-html": "^2.3.2",
     "uview-ui": "^2.0.33"
   }
 }

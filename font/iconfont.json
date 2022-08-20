@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1605770",
+      "name": "网站",
+      "font_class": "web",
+      "unicode": "e6e9",
+      "unicode_decimal": 59113
+    },
+    {
       "icon_id": "853009",
       "name": "军功章",
       "font_class": "jungongzhang",
