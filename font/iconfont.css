@@ -1,8 +1,8 @@
 @font-face {
-  font-family: 'iconfont';  /* Project id 3591822 */
-  src: url('//at.alicdn.com/t/c/font_3591822_izje3tnfyp.woff2?t=1660967750275') format('woff2'),
-       url('//at.alicdn.com/t/c/font_3591822_izje3tnfyp.woff?t=1660967750275') format('woff'),
-       url('//at.alicdn.com/t/c/font_3591822_izje3tnfyp.ttf?t=1660967750275') format('truetype');
+  font-family: "iconfont"; /* Project id 3591822 */
+  src: url('//at.alicdn.com/t/c/font_3591822_s5q088prnzg.woff2?t=1661000433008') format('woff2'),
+       url('//at.alicdn.com/t/c/font_3591822_s5q088prnzg.woff?t=1661000433008') format('woff'),
+       url('//at.alicdn.com/t/c/font_3591822_s5q088prnzg.ttf?t=1661000433008') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,18 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-shoucang3:before {
+  content: "\e697";
+}
+
+.icon-erweima:before {
+  content: "\eaf1";
+}
+
+.icon-a-bijibenbiji:before {
+  content: "\e6bf";
 }
 
 .icon-web:before {
@@ -77,7 +89,7 @@
   content: "\e67e";
 }
 
-.icon-shoucang:before {
+.icon-shoucang2:before {
   content: "\e600";
 }
 
@@ -96,4 +108,3 @@
 .icon-guizhangzhidu:before {
   content: "\e81e";
 }
-

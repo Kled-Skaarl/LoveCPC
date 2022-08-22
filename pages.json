@@ -51,6 +51,17 @@
 
 		}
 	],
+	"subPackages": [{
+		"root": "subPages",
+		"pages": [{
+			"path": "material-detail/material-detail",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+		}]
+	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",

@@ -27,7 +27,6 @@
 
 <style lang="scss">
 .content{
-	margin-top: 50upx;
 	display: flex;
 	align-items: center;
 	z-index: 1;
