@@ -175,7 +175,7 @@
 
 		.search {
 			position: absolute;
-			margin-top: 80upx;
+			bottom: 10upx;
 			z-index: 2;
 		}
 	}

@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "12710702",
+      "name": "收藏",
+      "font_class": "shoucang3",
+      "unicode": "e697",
+      "unicode_decimal": 59031
+    },
+    {
+      "icon_id": "5387520",
+      "name": "二维码",
+      "font_class": "erweima",
+      "unicode": "eaf1",
+      "unicode_decimal": 60145
+    },
+    {
+      "icon_id": "24656840",
+      "name": "笔记本、笔记",
+      "font_class": "a-bijibenbiji",
+      "unicode": "e6bf",
+      "unicode_decimal": 59071
+    },
+    {
       "icon_id": "1605770",
       "name": "网站",
       "font_class": "web",
@@ -120,7 +141,7 @@
     {
       "icon_id": "1253",
       "name": "收藏",
-      "font_class": "shoucang",
+      "font_class": "shoucang2",
       "unicode": "e600",
       "unicode_decimal": 58880
     },
