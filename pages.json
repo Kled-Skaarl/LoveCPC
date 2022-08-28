@@ -26,14 +26,27 @@
 			}
 
 		}, {
-			"path": "pages/user/user",
-			"style": {
+			"path": "pages/user/index",
+			/* "style": {
 				"navigationBarTitleText": "uni-app",
 				"navigationStyle": "custom",
 				"enablePullDownRefresh": false
 			}
 
-		}, {
+		}, */
+		"style": {}
+			}
+		],
+		"style": "v2",
+		"sitemapLocation": "sitemap.json",
+		"globalStyle": {
+			"backgroundTextStyle": "light",
+			"navigationBarBackgroundColor": "#fff",
+			"navigationBarTitleText": "Weixin",
+			"navigationBarTextStyle": "black",
+			"navigationStyle": "custom"
+		},
+		{
 			"path": "pages/home/webpage",
 			"style": {
 				"navigationBarTitleText": "uni-app",
@@ -96,6 +109,20 @@
 				"text": "我的"
 			}
 		]
+	},
+	"pages": [{
+	"path": "pages/login/index",
+	"style": {
+				"navigationBarTitleText": "登录"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationStyle": "custom",
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
 	},
 	"uniIdRouter": {}
 }
