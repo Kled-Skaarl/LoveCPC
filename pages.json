@@ -26,7 +26,7 @@
 			}
 
 		}, {
-			"path": "pages/user/index",
+			"path": "pages/user/user",
 			/* "style": {
 				"navigationBarTitleText": "uni-app",
 				"navigationStyle": "custom",
@@ -44,7 +44,9 @@
 			"navigationBarBackgroundColor": "#fff",
 			"navigationBarTitleText": "Weixin",
 			"navigationBarTextStyle": "black",
-			"navigationStyle": "custom"
+			"navigationStyle": "custom",
+			"enablePullDownRefresh": false
+				}
 		},
 		{
 			"path": "pages/home/webpage",
