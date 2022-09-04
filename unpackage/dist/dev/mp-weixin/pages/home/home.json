@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "uni-app",
-  "navigationStyle": "custom",
-  "usingComponents": {
-    "search": "/components/search/search",
-    "u-swiper": "/node-modules/uview-ui/components/u-swiper/u-swiper"
-  }
-}

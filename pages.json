@@ -2,7 +2,7 @@
 	"easycom": {
 		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
 	},
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [ 
 		{
 			"path": "pages/home/home",
 			"style": {
@@ -27,27 +27,25 @@
 
 		}, {
 			"path": "pages/user/user",
-			/* "style": {
-				"navigationBarTitleText": "uni-app",
-				"navigationStyle": "custom",
-				"enablePullDownRefresh": false
-			}
-
-		}, */
-		"style": {}
-			}
-		],
-		"style": "v2",
-		"sitemapLocation": "sitemap.json",
-		"globalStyle": {
-			"backgroundTextStyle": "light",
-			"navigationBarBackgroundColor": "#fff",
-			"navigationBarTitleText": "Weixin",
-			"navigationBarTextStyle": "black",
-			"navigationStyle": "custom",
-			"enablePullDownRefresh": false
-				}
+			"style": {}
 		},
+		{
+			"path": "pages/login/index",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		}
+	],
+	"style": "v2",
+	"sitemapLocation": "sitemap.json",
+	"globalStyle": {
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#fff",
+		"navigationBarTitleText": "Weixin",
+		"navigationBarTextStyle": "black",
+		"navigationStyle": "custom"
+
+		}, 
 		{
 			"path": "pages/home/webpage",
 			"style": {
@@ -55,8 +53,8 @@
 				"navigationStyle": "custom",
 				"enablePullDownRefresh": false
 			}
-
-		}, {
+		}, 
+		
 			"path": "pages/video/videoPlay",
 			"style": {
 				"navigationBarTitleText": "uni-app",
@@ -64,7 +62,6 @@
 				"enablePullDownRefresh": false
 			}
 
-		}
 	],
 	"subPackages": [{
 		"root": "subPages",
@@ -111,20 +108,6 @@
 				"text": "我的"
 			}
 		]
-	},
-	"pages": [{
-	"path": "pages/login/index",
-	"style": {
-				"navigationBarTitleText": "登录"
-			}
-		}
-	],
-	"globalStyle": {
-		"navigationStyle": "custom",
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
 	},
 	"uniIdRouter": {}
 }
