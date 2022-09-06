@@ -24,7 +24,25 @@
 				"enablePullDownRefresh": false
 			}
 
-		}, {
+		}, 
+		{
+			"path": "pages/video/videoPlay",
+			"style": {
+				"navigationBarTitleText": "uni-app",
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+		
+		}, 
+		{
+			"path": "pages/home/webpage",
+			"style": {
+				"navigationBarTitleText": "uni-app",
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
 			"path": "pages/user/user",
 			"style": {}
 		},
