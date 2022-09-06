@@ -2,8 +2,7 @@
 	"easycom": {
 		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
 	},
-	"pages": [ 
-		{
+	"pages": [{
 			"path": "pages/home/home",
 			"style": {
 				"navigationBarTitleText": "uni-app",
@@ -38,14 +37,14 @@
 	],
 	"style": "v2",
 	"sitemapLocation": "sitemap.json",
-	"globalStyle": {
-		"backgroundTextStyle": "light",
-		"navigationBarBackgroundColor": "#fff",
-		"navigationBarTitleText": "Weixin",
-		"navigationBarTextStyle": "black",
-		"navigationStyle": "custom"
+	"globalStyle": [{
+			"backgroundTextStyle": "light",
+			"navigationBarBackgroundColor": "#fff",
+			"navigationBarTitleText": "Weixin",
+			"navigationBarTextStyle": "black",
+			"navigationStyle": "custom"
 
-		}, 
+		},
 		{
 			"path": "pages/home/webpage",
 			"style": {
@@ -53,14 +52,16 @@
 				"navigationStyle": "custom",
 				"enablePullDownRefresh": false
 			}
-		}, 
-		
+		},
+		{
 			"path": "pages/video/videoPlay",
 			"style": {
 				"navigationBarTitleText": "uni-app",
 				"navigationStyle": "custom",
 				"enablePullDownRefresh": false
 			}
+		}
+
 
 	],
 	"subPackages": [{
