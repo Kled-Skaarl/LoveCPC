@@ -1,0 +1,221 @@
+/**index.wxss**/
+.page {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+.fz-24 {
+    font-size: 24rpx;
+    color: rgb(194, 193, 193);
+}
+.page-bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.content {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.page-head {
+    height: 80rpx;
+    width: 100%;
+    padding-left: 40rpx;
+    display: flex;
+/* 	justify-content: space-between; */
+    align-items: center;
+    margin-top: 60rpx;
+}
+.head-logo {
+	width: 350rpx;
+	height: 150%;
+}
+.head-alphabet {
+	width: 350rpx;
+	height: 50%;
+}
+.favourite-box {
+    width: 60rpx;
+    height: 60rpx;
+    display: flex;
+    align-items: center;
+    margin-left: 30rpx;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50rpx;
+}
+.head-favourite {
+    width: 70%;
+    height: 70%;
+    margin: 0 auto;
+}
+.page-Heads {
+    margin-top: 30rpx;
+    margin-left: 100rpx;
+}
+.page-Heads image {
+    width: 220rpx;
+    height: 220rpx;
+}
+.info {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 20rpx;
+}
+.info .info-one {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+}
+.info .info-name .name {
+    font-size: 34rpx;
+    color: #fff;
+    font-weight: 600;
+    margin-left: 30rpx;
+}
+.info .info-sj {
+    width: 57%;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5rpx;
+}
+.info .info-sj .sj {
+    font-size: 24rpx;
+    color: rgb(224, 202, 155);
+}
+.Segmentation {
+    width: 100%;
+    height: 2rpx;
+}
+.info-tow {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 20rpx;
+}
+.info-tow .cont {
+    font-size: 24rpx;
+    color: rgb(224, 202, 155);
+    margin-left: 30rpx;
+}
+.info-list {
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20rpx;
+    position: relative;
+}
+.info-list image {
+    width: 140rpx;
+    height: 130rpx;
+}
+.info-list .number {
+    font-size: 28rpx;
+    font-weight: 600;
+    position: absolute;
+    top: 30rpx;
+    width: 140rpx;
+    text-align: center;
+    color: rgb(110, 38, 38);
+}
+.info-list .title {
+    text-align: center;
+    color: #eeeeee;
+    font-size: 24rpx;
+    position: absolute;
+    top: 70rpx;
+    width: 140rpx;
+}
+.Calendar {
+    width: 88%;
+    margin: 0 auto;
+    margin-top: 30rpx;
+}
+.Calendar .line {
+    width: 100%;
+    height: 15rpx;
+    border-radius: 20rpx;
+    background-image: linear-gradient(to right, rgb(252, 227, 0), rgb(255, 136, 0));
+}
+.Calendar .circle-list {
+    width: 102%;
+    display: flex;
+    justify-content: space-between;
+}
+.Calendar .circle-list .circle {
+    width: 60rpx;
+    height: 60rpx;
+    background-color: rgb(252, 228, 228);
+    text-align: center;
+    line-height: 60rpx;
+    border-radius: 50rpx;
+    margin-top: -38rpx;
+    color: red;
+    font-size: 26rpx;
+    font-weight: 600;
+    border: 1rpx solid rgb(252, 228, 228);
+}
+.Calendar .circle-list .circle-true {
+    width: 60rpx;
+    height: 60rpx;
+    background-image: linear-gradient(to right, rgb(253, 193, 136), rgb(255, 102, 0));
+    text-align: center;
+    line-height: 60rpx;
+    border-radius: 50rpx;
+    margin-top: -38rpx;
+    color: rgb(110, 21, 21);
+    font-size: 26rpx;
+    font-weight: 900;
+    border: 1rpx solid #fff;
+}
+.Calendar .circle-list .title {
+    width: 60rpx;
+    text-align: center;
+    font-size: 22rpx;
+    margin-top: 10rpx;
+    color: rgb(224, 202, 155);
+    font-weight: 100;
+}
+.date {
+    width: 91%;
+    margin: 0 auto;
+    margin-top: 30rpx;
+}
+.date image {
+    width: 100%;
+    height: 390rpx;
+}
+.btn-info {
+    width: 84%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40rpx;
+    font-size: 24rpx;
+    color: rgb(224, 202, 155);
+}
+.btn-info .num {
+    color: #fff;
+    font-weight: 600;
+}
+.btn-info .btn {
+    width: 200rpx;
+    height: 55rpx;
+    text-align: center;
+    background-color: rgb(252, 228, 228);
+    line-height: 55rpx;
+    color: red;
+    border-radius: 40rpx;
+    margin-top: -10rpx;
+}
+.tabbar {
+    width: 100%;
+    height: 200rpx;
+    position: absolute;
+    bottom: 0rpx;
+}
+

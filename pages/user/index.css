@@ -28,29 +28,22 @@
 .page-head {
     height: 80rpx;
     width: 100%;
-    /* background-color: black; */
-    padding-left: 20rpx;
+    padding-left: 40upx;
     display: flex;
+/* 	justify-content: space-between; */
     align-items: center;
-    margin-top: 11%;
+    margin-top: 60upx;
 }
 
-.head-more {
-    width: 38rpx;
-    height: 38rpx;
-}
 
 .head-logo {
-    width: 160rpx;
-    height: 55rpx;
-    margin-left: 30rpx;
+	width: 350upx;
+	height: 150%;
 }
 
 .head-alphabet {
-    width: 198rpx;
-    height: 15rpx;
-    margin-top: -22rpx;
-    margin-left: 10rpx;
+	width: 350upx;
+	height: 50%;
 }
 
 .favourite-box {

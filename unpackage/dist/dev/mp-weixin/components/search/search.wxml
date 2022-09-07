@@ -1,0 +1,1 @@
+<view><view class="content"><view><view class="iconfont icon-sousuo _i"></view></view><view class="inputare"><input placeholder="看今朝辉煌·忆峥嵘岁月" data-event-opts="{{[['input',[['__set_model',['','searchdata','$event',[]]]]]]}}" value="{{searchdata}}" bindinput="__e"/></view><view class="search-butten">搜索</view></view></view>

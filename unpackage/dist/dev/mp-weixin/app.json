@@ -3,10 +3,19 @@
     "pages/home/home",
     "pages/video/video",
     "pages/materials/materials",
+    "pages/video/videoPlay",
+    "pages/home/webpage",
     "pages/user/user",
-    "pages/home/webpage"
+    "pages/login/index"
   ],
-  "subPackages": [],
+  "subPackages": [
+    {
+      "root": "subPages",
+      "pages": [
+        "material-detail/material-detail"
+      ]
+    }
+  ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
@@ -21,26 +30,26 @@
     "list": [
       {
         "pagePath": "pages/home/home",
-        "iconPath": "static/img/首页-active.png",
-        "selectedIconPath": "static/img/首页.png",
+        "iconPath": "static/img/home-active.png",
+        "selectedIconPath": "static/img/home.png",
         "text": "首页"
       },
       {
         "pagePath": "pages/materials/materials",
-        "iconPath": "static/img/党建资料.png",
-        "selectedIconPath": "static/img/党建资料-active.png",
+        "iconPath": "static/img/materials.png",
+        "selectedIconPath": "static/img/materials-active.png",
         "text": "党史资料"
       },
       {
         "pagePath": "pages/video/video",
-        "iconPath": "static/img/党建视频.png",
-        "selectedIconPath": "static/img/党建视频-active.png",
+        "iconPath": "static/img/video.png",
+        "selectedIconPath": "static/img/video-active.png",
         "text": "学习视频"
       },
       {
         "pagePath": "pages/user/user",
-        "iconPath": "static/img/我的.png",
-        "selectedIconPath": "static/img/我的-active.png",
+        "iconPath": "static/img/user.png",
+        "selectedIconPath": "static/img/user-active.png",
         "text": "我的"
       }
     ]

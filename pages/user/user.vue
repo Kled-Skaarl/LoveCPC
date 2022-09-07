@@ -1,15 +1,11 @@
 <template>
     <!-- index.wxml -->
     <view class="page">
-        <image class="page-bg" src="/static/static/bg.png"></image>
+        <image class="page-bg" src="/static/img/user/static/bg.png"></image>
         <view class="content">
             <view class="page-head">
-                <image class="head-more" src="/static/img/user/static/more.png"></image>
                 <image class="head-logo" src="/static/img/user/static/logo.png"></image>
                 <image class="head-alphabet" src="/static/img/user/static/alphabet.png"></image>
-                <view class="favourite-box">
-                    <image class="head-favourite" src="/static/img/user/static/favourite.png"></image>
-                </view>
             </view>
             <view class="page-Heads">
                 <image :src="userinfo.heads"></image>
@@ -78,9 +74,6 @@
                     </view>
                 </view>
             </view>
-        </view>
-        <view>
-            <image class="tabbar" src="/static/img/user/static/tabbar.png"></image>
         </view>
     </view>
 </template>

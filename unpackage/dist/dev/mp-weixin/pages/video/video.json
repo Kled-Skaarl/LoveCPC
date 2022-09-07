@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "uni-app",
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "search": "/components/search/search",
+    "uni-pagination": "/uni_modules/uni-pagination/components/uni-pagination/uni-pagination"
+  }
+}

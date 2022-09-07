@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "uni-app",
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "search": "/components/search/search",
+    "card": "/components/card/card"
+  }
+}
