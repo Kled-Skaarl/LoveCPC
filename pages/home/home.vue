@@ -99,9 +99,11 @@
 			return {
 				// 轮播图片url
 				swapList: [
-					'../../static/img/home/swap.png',
-					'../../static/img/home/swap.png',
-					'../../static/img/home/swap.png'
+					'https://fs.591iq.cn/group1/M00/4F/45/rBKYP2QCws-ABAMqAABn4XzDof8943.jpg',
+					'https://fs.591iq.cn/group1/M00/4F/45/rBKYP2QCws-ABAMqAABn4XzDof8943.jpg',
+					'https://fs.591iq.cn/group1/M00/4F/45/rBKYP2QCws-ABAMqAABn4XzDof8943.jpg',
+					// '../../static/img/home/swap.png',
+					// '../../static/img/home/swap.png'
 				],
 				// 学习链接data
 				linkData: [{

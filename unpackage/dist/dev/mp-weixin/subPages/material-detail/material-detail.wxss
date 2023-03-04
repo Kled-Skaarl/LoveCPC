@@ -37,7 +37,7 @@ page.data-v-67c79442 {
   min-height: 100px;
   max-height: 200px;
   height: 248rpx;
-  background: url(/static/img/materials/顶灯.png) top no-repeat;
+  background: url(/static/img/materials/dome_light.png) top no-repeat;
   background-size: contain;
 }
 .page-header .top-img2.data-v-67c79442 {
@@ -55,7 +55,7 @@ page.data-v-67c79442 {
 }
 .page-content.data-v-67c79442 {
   padding: 25rpx;
-  background: url(/static/img/materials/映山红.png) left;
+  background: url(/static/img/materials/azalea.png) left;
 }
 .page-content > .header.data-v-67c79442 {
   padding: 10rpx 0;

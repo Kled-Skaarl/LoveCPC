@@ -210,7 +210,7 @@
 
 <style lang="scss" scoped>
 	page {
-		background: url('@/static/img/materials/淡红.png');
+		background: url('@/static/img/materials/light_red.png');
 		min-height: 100%;
 	}
 
@@ -223,7 +223,7 @@
 		min-height: 100px;
 		max-height: 200px;
 		height: 248upx;
-		background: url('@/static/img/materials/顶灯.png') top no-repeat;
+		background: url('@/static/img/materials/dome_light.png') top no-repeat;
 		background-size: contain;
 
 		.top-img2 {
@@ -244,7 +244,7 @@
 
 	.page-content {
 		padding: 25upx;
-		background: url('@/static/img/materials/映山红.png') left;
+		background: url('@/static/img/materials/azalea.png') left;
 		>.header {
 			padding: 10upx 0;
 			display: flex;
