@@ -1,12 +1,12 @@
 <template>
-	<view>
+	<view class="page">
 		<view class="page-header">
 			<view class="top-img1">
-				<img src="../../static/img/home/redflag.png" alt="">
+				<image src="../../static/img/home/redflag.png" alt="" style="width: 100vw;height: 320rpx;">
 			</view>
 			<view class="top-img2">
-				<img src="@/static/img/home/loveCPC.png" alt="">
-				<img src="@/static/img/home/LOVE LEARNING HISTORY OF CPC.png" alt="">
+				<image src="@/static/img/home/loveCPC.png" alt="" style="width: 328rpx; height: 148rpx;">
+				<image src="@/static/img/home/sss.png" alt="" style="width: 444rpx; height: 48rpx;">
 			</view>
 			<view class="search">
 				<search></search>
@@ -155,8 +155,8 @@
 </script>
 
 <style lang="scss" scoped>
-	page {
-		background: url('@/static/img/materials/photo20.png');
+	.page {
+		background: url('@/static/img/materials/photoc.png');
 		background-position: right;
 		min-height: 100%;
 	}

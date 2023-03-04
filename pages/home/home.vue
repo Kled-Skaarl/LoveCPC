@@ -7,7 +7,7 @@
 				<image src="../../static/img/home/redflag.png" alt="" id="redflag">
 					<view class="text">
 						<image src="@/static/img/home/loveCPC.png" alt="" id="loveCPC">
-						<image src="@/static/img/home/LOVE LEARNING HISTORY OF CPC.png" alt="" id="lovelearn">
+						<image src="@/static/img/home/sss.png" alt="" id="lovelearn">
 					</view>
 				
 			</view>

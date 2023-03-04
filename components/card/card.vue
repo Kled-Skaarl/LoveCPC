@@ -1,5 +1,7 @@
 <template>
-	<view class="card" ref="card">
+	<view >
+		
+	<view  class="card " ref="card" >
 		<view class="header">
 			<view class="title-wrap">
 				<navigator :url="'/subPages/material-detail/material-detail?id='+obj.id">
@@ -25,6 +27,7 @@
 			</view>
 		</view>
 	</view>
+	</view>
 </template>
 
 <script>
@@ -43,7 +46,9 @@
 		},
 		methods: {
 			contentClick() {
-				let el = this.$refs.card.$el;
+				let el = this.$refs.card.$el
+				// console.log(this.$refs.card,'el22222222222222');
+				// console.log(el,'el11111111');
 				el.classList.toggle('card_bg');
 			},
 			handleCollected() {
@@ -66,14 +71,15 @@
 	.card {
 		width: 100%;
 		overflow: hidden;
+		// background: url('@/static/img/materials/bg.png') left 46% no-repeat;
 		background: url('@/static/img/materials/bg.png') left 46% no-repeat, linear-gradient(to bottom, white, transparent);
 		border: 1px solid #fff;
 		border-radius: 15upx;
 		line-height: 1;
 
 		&.card_bg {
+			// background: url('@/static/img/materials/bg.png') left 46% no-repeat;
 			background: url('@/static/img/materials/bg.png') left 46% no-repeat, linear-gradient(to bottom, white, transparent 400upx);
-
 			.text-overflow {
 				display: block;
 			}
@@ -135,11 +141,16 @@
 			margin-bottom: 30upx;
 			color: #fff;
 			font-size: 26upx;
-			display: -webkit-box;
-			-webkit-box-orient: vertical;
-			-webkit-line-clamp: 3;
-			overflow: hidden;
-			text-overflow: ellipsis;
+			
+			height: 7.6em; 
+			 line-height: 1.8; 
+			 overflow: hidden; 
+			
+			// display: -webkit-box;
+			// -webkit-box-orient: vertical;
+			// -webkit-line-clamp: 3;
+			// overflow: hidden;
+			// text-overflow: ellipsis;
 			.item{
 				padding: 0 25upx;
 				border-top: 4upx solid;

@@ -3,7 +3,7 @@
 		<view class="page-header">
 			<view class="top-img2">
 				<img src="@/static/img/home/loveCPC.png" alt="">
-				<img src="@/static/img/home/LOVE LEARNING HISTORY OF CPC.png" alt="">
+				<img src="@/static/img/home/sss.png" alt="">
 			</view>
 			<view class="search">
 				<search></search>
@@ -199,6 +199,8 @@
 			getArticleData() {
 				this.$nextTick(() => {
 					let query = uni.createSelectorQuery().in(this);
+					console.log(query,'s');
+					console.log(query.select('.original'),'s2');
 					query.select('.original .d2txt_con').boundingClientRect().exec(res => {
 						console.log(res);
 					});
@@ -473,11 +475,11 @@
 
 				.original-overflow /deep/ {
 					.d2txt {
-						display: -webkit-box;
-						-webkit-box-orient: vertical;
-						-webkit-line-clamp: 12;
-						overflow: hidden;
-						text-overflow: ellipsis;
+						// display: -webkit-box;
+						// -webkit-box-orient: vertical;
+						// -webkit-line-clamp: 12;
+						// overflow: hidden;
+						// text-overflow: ellipsis;
 					}
 				}
 			}
