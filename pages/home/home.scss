@@ -99,17 +99,18 @@
 		position: relative;
 		top:200upx;
 		width: 95%;
-		height: 750upx;
+		height: 850upx;
 		background-color: #FFFFFF;
 		margin: 40upx auto;
 		border-radius: 20upx;
 		flex-direction: column;
 
 		.head {
-			height: 10%;
+			height: 20%;
 			display: flex;
 			align-items: center;
 			margin-top: 10upx;
+			
 
 			.iconfont {
 				color: #E2000B;
@@ -118,7 +119,7 @@
 			}
 
 			.text1 {
-				font-size: 22upx;
+				font-size: 32upx;
 				font-weight: 600;
 				margin-left: 10upx;
 			}
@@ -161,7 +162,8 @@
 
 					// align-items: center;
 					.text1 {
-						font-size: 30upx;
+						font-size: 26upx;
+						font-weight: 600;
 					}
 
 					.rright {

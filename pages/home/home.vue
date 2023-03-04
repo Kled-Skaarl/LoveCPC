@@ -34,7 +34,7 @@
 			</view>
 			<view class="detail">
 				<view class="detailItem" v-for="(item,index) in hotpotData.slice(0,3)">
-					<view class="left">
+					<view class="left" @click="handletoVideoPlay(item.title)">
 						<img :src="item.img" alt="">
 					</view>
 					<view class="right">
@@ -153,6 +153,8 @@
 				tempvideoData.id = this.videoData[i].id
 				this.hotpotData.push(tempvideoData)
 			}
+			// console.log("this.hotpotData")
+			// console.log(this.hotpotData);
 			// 请求所有数据
 			this.$get('/posts').then(res => {
 
@@ -195,6 +197,13 @@
 					url: '../materials/materials'
 				})
 			},
+			//点击视频跳转到对应视频播放页
+			handletoVideoPlay(key){
+				// console.log(id);
+				uni.navigateTo({
+					url: '../video/videoPlay?title='+key
+				})
+			}
 		}
 	}
 </script>

@@ -9,18 +9,6 @@
 				</view>
 			
 		</view>
-<!-- 		<view class="content">
-			<view class="top-img1">
-				<img src="@/static/img/home/redflag.png" alt="">
-			</view>
-			<view class="top-img2">
-				<img src="@/static/img/video/topimg1.png" alt="">
-				<img src="@/static/img/video/GLORIOUS JOURNEY OF CPC.png" alt="">
-			</view>
-			<view class="search">
-				<search></search>
-			</view>
-		</view> -->
 
 		<!-- // 视频播放组件 -->
 		<view class="videoPlay">
@@ -62,12 +50,15 @@
 
 <script>
 	import mpHtml from 'mp-html/dist/uni-app/components/mp-html/mp-html'
+	import jsonData from '@/static/json/video.json'
 	export default {
 		components: {
 			mpHtml
 		},
 		data() {
 			return {
+				title:'',
+				all_videoData:[],
 				id: 0, //视频id
 				// 正在播放
 				isPlaying: false,
@@ -82,8 +73,16 @@
 			};
 		},
 		onLoad(obj) {
-			// console.log(obj);
-			this.id = obj.id
+			console.log(obj.title);
+			this.title = obj.title
+			this.all_videoData = jsonData.slice(0, 100);
+			//在视频数据中找到对应的视频
+			for(let key in this.all_videoData){
+				if(this.all_videoData[key].title==this.title){
+					console.log(this.all_videoData[key]);
+					this.videoData.videoUrl=this.all_videoData[key].m3u8
+				}
+			}
 		},
 		mounted() {
 			// 在自定义组件下，第二个参数传入组件实例 this，以操作组件内 <video> 组件。
