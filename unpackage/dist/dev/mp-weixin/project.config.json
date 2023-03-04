@@ -18,7 +18,7 @@
         }
     },
     "compileType": "miniprogram",
-    "libVersion": "2.25.3",
+    "libVersion": "2.26.0",
     "appid": "wxb79046a753e9f37d",
     "projectname": "loveCPC",
     "condition": {},

@@ -24,8 +24,8 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-page.data-v-7dee3ac0 {
-  background: url(/static/img/materials/photo20.png);
+.page.data-v-7dee3ac0 {
+  background: url(/static/img/materials/photoc.png);
   background-position: right;
   min-height: 100%;
 }

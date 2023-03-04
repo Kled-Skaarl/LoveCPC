@@ -2,15 +2,15 @@
 	<view>
 		<view class="background">
 			<image src="@/static/img/home/bgimg1.png" alt="">
-			<image src="@/static/img/home/bgimg2.png" alt="" id="bgimg2">
-			<view class="top-text">
-				<image src="../../static/img/home/redflag.png" alt="" id="redflag">
-					<view class="text">
-						<image src="@/static/img/home/loveCPC.png" alt="" id="loveCPC">
-						<image src="@/static/img/home/sss.png" alt="" id="lovelearn">
+				<image src="@/static/img/home/bgimg2.png" alt="" id="bgimg2">
+					<view class="top-text">
+						<image src="../../static/img/home/redflag.png" alt="" id="redflag">
+							<view class="text">
+								<image src="@/static/img/home/loveCPC.png" alt="" id="loveCPC">
+									<image src="@/static/img/home/sss.png" alt="" id="lovelearn">
+							</view>
+
 					</view>
-				
-			</view>
 		</view>
 		<!-- 搜索框 -->
 		<view class="content">
@@ -33,7 +33,7 @@
 				<text class="text2">学习百年党史 传承红色精神</text>
 			</view>
 			<view class="detail">
-				<view class="detailItem" v-for="(item,index) in hotpotData">
+				<view class="detailItem" v-for="(item,index) in hotpotData.slice(0,3)">
 					<view class="left">
 						<img :src="item.img" alt="">
 					</view>
@@ -94,9 +94,13 @@
 </template>
 
 <script>
+	import TagsNameHelper from '@/utils/TagsNameHelper.js'
+	import jsonData from '@/static/json/video.json'
 	export default {
 		data() {
 			return {
+				allData: [], //从后端获取的所有数据
+				videoData: [], //存储视频数据
 				// 轮播图片url
 				swapList: [
 					'https://fs.591iq.cn/group1/M00/4F/45/rBKYP2QCws-ABAMqAABn4XzDof8943.jpg',
@@ -128,39 +132,49 @@
 					}
 				],
 				//热点推荐
-				hotpotData: [{
-						img: '../../static/img/home/hotpot1.png',
-						title: '【奋斗新百年 启航新征程】共同践行伟大时代的历史跨越使命',
-						source: '党史学习教育官网'
-					},
-					{
-						img: '../../static/img/home/hotpot2.png',
-						title: '从百年党史中汲取党史学科发展的智慧（构建中国特色哲学社会科学）',
-						source: '中共党史网'
-					},
-					{
-						img: '../../static/img/home/hotpot3.png',
-						title: '学习党史：中共共产党人的必修课',
-						source: '中国共产党新闻网'
-					}
-				],
+				hotpotData: [],
 				//时事要闻
-				currentaffairsData: [{
-						title: '【金句回响】《习近平关于总体国家安全观论述摘编》：重点维护领域国家安全',
-						source: '新华网',
-					},
-					{
-						title: '习近平在中国人民大学考察时强调：坚持党的领导传承红色基因扎根中国大地',
-						source: '共产党员网',
-					},
-					{
-						title: '看党史，必须抓主流和主线',
-						source: '党史学习教育网',
-					}
-				],
+				currentaffairsData: [],
 			}
 		},
 		onLoad() {
+			// 获取视频数据
+			this.videoData = jsonData.slice(0, 100);
+			for (let i in this.videoData) {
+				var tempvideoData = {
+					img: '',
+					title: '',
+					source: '',
+					id: ''
+				}
+				tempvideoData.img = this.videoData[i].cover
+				tempvideoData.title = this.videoData[i].title
+				tempvideoData.source = this.videoData[i].from
+				tempvideoData.id = this.videoData[i].id
+				this.hotpotData.push(tempvideoData)
+			}
+			// 请求所有数据
+			this.$get('/posts').then(res => {
+
+				this.allData = TagsNameHelper(res.data);
+				console.log(this.allData);
+				for (var i = 0; i < this.allData.length; i++) {
+					var tempcurrentaffairsData = {
+						title: '',
+						source: '',
+						id: ''
+					}
+					tempcurrentaffairsData.title = this.allData[i].Title
+					tempcurrentaffairsData.source=this.allData[i].from
+					tempcurrentaffairsData.id = parseInt(this.allData[i].ID)
+					this.currentaffairsData.push(tempcurrentaffairsData)
+				}
+				this.currentaffairsData=this.currentaffairsData.slice(3,6)
+				console.log(this.currentaffairsData);
+			})
+
+
+
 		},
 		methods: {
 			//跳转至外部网站
@@ -176,9 +190,9 @@
 				})
 			},
 			//"查阅全部"跳转至资料页
-			handletoMaterialsPage(){
+			handletoMaterialsPage() {
 				uni.switchTab({
-					url:'../materials/materials'
+					url: '../materials/materials'
 				})
 			},
 		}
@@ -186,5 +200,5 @@
 </script>
 
 <style lang="scss">
-@import "./home.scss";
+	@import "./home.scss";
 </style>

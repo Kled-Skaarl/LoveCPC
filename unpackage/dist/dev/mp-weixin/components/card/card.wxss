@@ -86,11 +86,9 @@
   margin-bottom: 30rpx;
   color: #fff;
   font-size: 26rpx;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  height: 7.6em;
+  line-height: 1.8;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 .card .article .item.data-v-7daa7084 {
   padding: 0 25rpx;

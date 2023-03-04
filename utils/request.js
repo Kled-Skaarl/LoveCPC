@@ -1,11 +1,11 @@
 
 
-let baseURL = 'http://43.140.202.100:3000'
+let baseURL = 'http://43.140.204.55'
 export const $http = function(url, method = "GET", data = {}, header = {}) {
 	return new Promise((resolve, reject) => {
-		var getTimestamp=new Date().getTime()
+		// var getTimestamp=new Date().getTime()
 		uni.request({
-			url: baseURL + url+'/'+getTimestamp,
+			url: baseURL + url,
 			method,
 			header: {},
 			data,
