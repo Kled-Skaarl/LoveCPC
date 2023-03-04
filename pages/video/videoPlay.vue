@@ -1,6 +1,15 @@
 <template>
 	<view class="main">
-		<view class="content">
+		<!-- 头部红旗和文字 -->
+		<view class="top-text">
+			<image src="../../static/img/home/redflag.png" alt="" id="redflag">
+				<view class="text">
+					<image src="@/static/img/video/topimg1.png" alt="" id="topimg1">
+					<image src="@/static/img/video/GLORIOUS JOURNEY OF CPC.png" alt="" id="GJcpc">
+				</view>
+			
+		</view>
+<!-- 		<view class="content">
 			<view class="top-img1">
 				<img src="@/static/img/home/redflag.png" alt="">
 			</view>
@@ -11,7 +20,7 @@
 			<view class="search">
 				<search></search>
 			</view>
-		</view>
+		</view> -->
 
 		<!-- // 视频播放组件 -->
 		<view class="videoPlay">
@@ -143,100 +152,5 @@
 </script>
 
 <style lang="scss">
-	.main {
-		background-color: #FDDFCA;
-		min-height: calc(100vh);
-		height: auto;
-		padding-bottom: 50upx;
-	}
-
-	.content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		position: relative;
-		height: 100%;
-
-		.top-img1 {
-			position: relative;
-			z-index: 1;
-			margin-top: 0
-		}
-
-		.top-img2 {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			position: absolute;
-			margin-top: -50upx;
-			z-index: 2;
-		}
-
-		.search {
-			position: absolute;
-			bottom: 10upx;
-			z-index: 2;
-		}
-	}
-
-	.videoPlay {
-		margin-top: 80upx;
-		height: 500upx;
-		width: 100%;
-		// height: 100%;
-		display: flex;
-		text-align: center;
-		justify-content: center;
-
-		video {
-			width: 100%;
-			height: 450upx;
-		}
-	}
-
-
-
-	.article {
-		padding-top: 20upx;
-		padding-bottom: 20upx;
-		background-color: #F6EEE9;
-		margin-left: auto;
-		margin-right: auto;
-		width: 98%;
-		border-radius: 20upx;
-		min-height: calc(40vh);
-		height: auto;
-		margin-top: 20upx;
-
-		.head {
-			// margin-top: 40upx;
-			height: 100upx;
-			width: 100%;
-			text-align: center;
-
-			text {
-				margin-top: 20upx;
-				font-size: 34upx;
-				font-weight: 600;
-				color: #6C171B;
-			}
-
-			.line {
-				width: 90%;
-				height: 1upx;
-				border-top: solid #F60001 3upx;
-				margin: 20upx auto;
-			}
-		}
-
-		.detail {
-			// text-align: center;
-			margin: 20upx auto;
-			height: auto;
-			width: 90%;
-			font-size: 32upx;
-			color: #131211;
-		}
-	}
+@import "./videoPlay.scss";
 </style>

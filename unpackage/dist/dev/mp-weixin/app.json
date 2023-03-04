@@ -1,61 +1,60 @@
 {
-    "pages": [
-        "pages/home/home",
-        "pages/video/video",
-        "pages/materials/materials",
-        "pages/video/videoPlay",
-        "pages/home/webpage",
-        "pages/user/user",
-        "pages/login/index"
-    ],
-    "subPackages": [
-        {
-            "root": "subPages",
-            "pages": [
-                "material-detail/material-detail"
-            ]
-        }
-    ],
-    "window": {
-        "navigationBarTextStyle": "black",
-        "navigationBarTitleText": "uni-app",
-        "navigationBarBackgroundColor": "#F8F8F8",
-        "backgroundColor": "#F8F8F8"
-    },
-    "tabBar": {
-        "color": "#7A7E83",
-        "selectedColor": "#d81e06",
-        "borderStyle": "black",
-        "backgroundColor": "#ffffff",
-        "list": [
-            {
-                "pagePath": "pages/home/home",
-                "iconPath": "static/img/home-active.png",
-                "selectedIconPath": "static/img/home.png",
-                "text": "首页"
-            },
-            {
-                "pagePath": "pages/materials/materials",
-                "iconPath": "static/img/materials.png",
-                "selectedIconPath": "static/img/materials-active.png",
-                "text": "党史资料"
-            },
-            {
-                "pagePath": "pages/video/video",
-                "iconPath": "static/img/video.png",
-                "selectedIconPath": "static/img/video-active.png",
-                "text": "学习视频"
-            },
-            {
-                "pagePath": "pages/user/user",
-                "iconPath": "static/img/user.png",
-                "selectedIconPath": "static/img/user-active.png",
-                "text": "我的"
-            }
-        ]
-    },
-    "usingComponents": {
-        "search": "/components/search/search"
-    },
-    "sitemapLocation": "sitemap.json"
+  "pages": [
+    "pages/home/home",
+    "pages/video/video",
+    "pages/materials/materials",
+    "pages/video/videoPlay",
+    "pages/home/webpage",
+    "pages/user/user",
+    "pages/login/index"
+  ],
+  "subPackages": [
+    {
+      "root": "subPages",
+      "pages": [
+        "material-detail/material-detail"
+      ]
+    }
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#d81e06",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "iconPath": "static/img/home-active.png",
+        "selectedIconPath": "static/img/home.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/materials/materials",
+        "iconPath": "static/img/materials.png",
+        "selectedIconPath": "static/img/materials-active.png",
+        "text": "党史资料"
+      },
+      {
+        "pagePath": "pages/video/video",
+        "iconPath": "static/img/video.png",
+        "selectedIconPath": "static/img/video-active.png",
+        "text": "学习视频"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "iconPath": "static/img/user.png",
+        "selectedIconPath": "static/img/user-active.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {
+    "search": "/components/search/search"
+  }
 }

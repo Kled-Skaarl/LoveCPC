@@ -28,42 +28,62 @@
   position: absolute;
   z-index: -3;
   margin-top: 0rpx;
-}
-.background ._img {
+  height: 100vh;
   width: 100%;
-  height: 100%;
+}
+.background image {
+  margin: 0;
+  position: absolute;
+  top: -40rpx;
+  width: 100%;
+  height: 110%;
   object-fit: cover;
   margin-bottom: -100rpx;
 }
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  height: 100%;
+.top-text {
+  position: absolute;
+  top: -40rpx;
+  height: 300rpx;
+  width: 100%;
 }
-.content .top-img1 {
-  position: relative;
-  z-index: -1;
-  margin-top: 0;
+.top-text #redflag {
+  height: 80%;
+  width: 100%;
 }
-.content .top-img2 {
+.top-text .text {
+  height: 50%;
+  position: relative;
+  top: -200rpx;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  position: absolute;
-  margin-top: -50rpx;
-  z-index: 1;
+  align-items: center;
 }
-.content .search {
+.top-text .text #topimg1 {
+  width: 60%;
+  height: 90%;
+}
+.top-text .text #GJcpc {
+  margin-top: 40rpx;
+  height: 30%;
+  width: 70%;
+}
+.block-search {
+  width: 100%;
+  height: auto;
   position: absolute;
-  bottom: 10rpx;
   z-index: 2;
+  top: 180rpx;
+}
+.block-search .search-item {
+  display: table;
+  margin: 0 auto;
 }
 .videoList {
+  position: relative;
+  top: 320rpx;
   width: 95%;
-  height: 900rpx;
+  height: auto;
+  padding-top: 20rpx;
   background-color: #FFFFFF;
   margin: 40rpx auto;
   border-radius: 20rpx;
@@ -123,6 +143,8 @@
   margin-right: 10rpx;
 }
 .Classification {
+  position: relative;
+  top: 320rpx;
   width: 95%;
   height: 450rpx;
   background-color: #FFFFFF;

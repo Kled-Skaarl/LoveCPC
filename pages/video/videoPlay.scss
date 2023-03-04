@@ -1,0 +1,129 @@
+.main {	
+		position: absolute;
+		// top:-100upx;
+		background-color: #FDDFCA;
+		min-height: calc(100vh);
+		height: auto;
+		padding-bottom: 50upx;
+	}
+	.top-text{
+		position: absolute;
+		top:0;
+		height:300upx;
+		width: 100%;
+		#redflag{
+			height: 80%;
+			width: 100%;
+		}
+		.text{
+			height: 50%;
+			position: relative;
+			top:-200upx;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			#topimg1{
+				width: 60%;
+				height: 90%;
+			}
+			#GJcpc{
+				margin-top: 40upx;
+				height: 30%;
+				width: 70%;
+			}
+		}
+	}
+	
+	.content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		height: 100%;
+
+		.top-img1 {
+			position: relative;
+			z-index: 1;
+			margin-top: 0
+		}
+
+		.top-img2 {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			position: absolute;
+			margin-top: -50upx;
+			z-index: 2;
+		}
+
+		.search {
+			position: absolute;
+			bottom: 10upx;
+			z-index: 2;
+		}
+	}
+
+	.videoPlay {
+		position: relative;
+		top:150upx;
+		margin-top: 80upx;
+		height: 500upx;
+		width: 100%;
+		// height: 100%;
+		display: flex;
+		text-align: center;
+		justify-content: center;
+
+		video {
+			width: 100%;
+			height: 450upx;
+		}
+	}
+
+
+
+	.article {
+		position: relative;
+		top:100upx;
+		padding-top: 20upx;
+		padding-bottom: 20upx;
+		background-color: #F6EEE9;
+		margin-left: auto;
+		margin-right: auto;
+		width: 98%;
+		border-radius: 20upx;
+		min-height: calc(40vh);
+		height: auto;
+		margin-top: 20upx;
+
+		.head {
+			// margin-top: 40upx;
+			height: 100upx;
+			width: 100%;
+			text-align: center;
+
+			text {
+				margin-top: 20upx;
+				font-size: 34upx;
+				font-weight: 600;
+				color: #6C171B;
+			}
+
+			.line {
+				width: 90%;
+				height: 1upx;
+				border-top: solid #F60001 3upx;
+				margin: 20upx auto;
+			}
+		}
+
+		.detail {
+			// text-align: center;
+			margin: 20upx auto;
+			height: auto;
+			width: 90%;
+			font-size: 32upx;
+			color: #131211;
+		}
+	}

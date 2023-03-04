@@ -25,10 +25,38 @@
 /* 透明度 */
 /* 文章场景相关 */
 .main {
+  position: absolute;
   background-color: #FDDFCA;
   min-height: calc(100vh);
   height: auto;
   padding-bottom: 50rpx;
+}
+.top-text {
+  position: absolute;
+  top: 0;
+  height: 300rpx;
+  width: 100%;
+}
+.top-text #redflag {
+  height: 80%;
+  width: 100%;
+}
+.top-text .text {
+  height: 50%;
+  position: relative;
+  top: -200rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.top-text .text #topimg1 {
+  width: 60%;
+  height: 90%;
+}
+.top-text .text #GJcpc {
+  margin-top: 40rpx;
+  height: 30%;
+  width: 70%;
 }
 .content {
   display: flex;
@@ -57,6 +85,8 @@
   z-index: 2;
 }
 .videoPlay {
+  position: relative;
+  top: 150rpx;
   margin-top: 80rpx;
   height: 500rpx;
   width: 100%;
@@ -69,6 +99,8 @@
   height: 450rpx;
 }
 .article {
+  position: relative;
+  top: 100rpx;
   padding-top: 20rpx;
   padding-bottom: 20rpx;
   background-color: #F6EEE9;

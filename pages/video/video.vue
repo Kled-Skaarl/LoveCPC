@@ -1,23 +1,22 @@
 <template>
 	<view>
 		<view class="background">
-			<img src="@/static/img/video/bgimg1.png" alt="">
-			<!-- <img src="@/static/img/video/bgimg2.png" alt=""> -->
+			<image src="@/static/img/video/bgimg1.png" alt="">
 		</view>
-		<view class="content">
-			<view class="top-img1">
-				<img src="@/static/img/home/redflag.png" alt="">
+		<view class="top-text">
+			<image src="@/static/img/home/redflag.png" alt="" id="redflag">
+			<view class="text">
+				<image src="@/static/img/video/topimg1.png" alt="" id="topimg1">
+				<image src="@/static/img/video/GLORIOUS JOURNEY OF CPC.png" alt="" id="GJcpc">
 			</view>
-			<view class="top-img2">
-				<img src="@/static/img/video/topimg1.png" alt="">
-				<img src="@/static/img/video/GLORIOUS JOURNEY OF CPC.png" alt="">
-			</view>
-			<view class="search">
+		</view>
+
+		<!-- 搜索框 -->
+		<view class="block-search">
+			<view class="search-item">
 				<search></search>
 			</view>
 		</view>
-
-
 		<!-- 分类标签 -->
 		<view class="Classification">
 			<view class="head">
@@ -235,7 +234,7 @@
 			handletoVideoPlay(id) {
 				// console.log(id);
 				uni.navigateTo({
-					url:'./videoPlay?id='+id
+					url: './videoPlay?id=' + id
 				})
 			},
 		}
@@ -243,193 +242,5 @@
 </script>
 
 <style lang="scss">
-	.background {
-		position: absolute;
-		z-index: -3;
-		margin-top: 0upx;
-
-		img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-			margin-bottom: -100upx;
-		}
-	}
-
-	.content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		position: relative;
-		height: 100%;
-
-		.top-img1 {
-			position: relative;
-			z-index: -1;
-			margin-top: 0
-		}
-
-		.top-img2 {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			position: absolute;
-			margin-top: -50upx;
-			z-index: 1;
-		}
-
-		.search {
-			position: absolute;
-			bottom: 10upx;
-			z-index: 2;
-		}
-	}
-
-	.videoList {
-		width: 95%;
-		// height: 650upx;
-		height: 900upx;
-		background-color: #FFFFFF;
-		margin: 40upx auto;
-		border-radius: 20upx;
-
-		.head {
-			height: 10%;
-			display: flex;
-			align-items: center;
-			margin-top: 10upx;
-
-			.iconfont {
-				color: #E2000B;
-				font-size: 40upx;
-				margin-left: 20upx;
-			}
-
-			.text1 {
-				font-size: 32upx;
-				font-weight: 600;
-				margin-left: 10upx;
-			}
-
-			.text2 {
-				font-size: 28upx;
-				margin-left: 20upx;
-				color: #670F13;
-			}
-		}
-
-		;
-
-		.body {
-			height: 35%;
-			width: 100%;
-			// align-items: center;
-			text-align: center;
-			margin: 20upx auto;
-			display: flex;
-			justify-content: space-between;
-
-			.videoItem {
-				// border-style: solid;
-				// border-width: 5upx;
-				// background-color: #C70007;
-				height: auto;
-				width: 50%;
-				display: flex;
-				text-align: center;
-				flex-direction: column;
-
-				// align-items: center;
-				img {
-					width: 95%;
-					height: 60%;
-					margin: 10upx auto;
-				}
-
-				.littleTitle {
-					display: flex;
-					text {
-						margin: 10upx 0;
-						font-size: 20upx;
-						font-weight: 600;
-					}
-					.iconfont{
-						color: #C70007;
-						font-size: 36upx;
-						margin-right: 10upx;
-					}
-				}
-
-
-			}
-		}
-
-	}
-
-	.Classification {
-		width: 95%;
-		height: 450upx;
-		background-color: #FFFFFF;
-		margin: 40upx auto;
-		border-radius: 20upx;
-		opacity: 0.8;
-
-		.head {
-			display: flex;
-			text-align: center;
-			width: 100%;
-			height: 10%;
-
-			text {
-				margin: 20upx auto;
-				font-size: 32upx;
-				font-weight: 600;
-			}
-		}
-
-		.line {
-			width: 90%;
-			height: 1upx;
-			border-top: solid #C70007 5upx;
-			margin: 20upx auto;
-		}
-
-		.content {
-			display: flex;
-			justify-content: space-around;
-			// align-items: center;
-			flex-direction: row;
-			text-align: center;
-			width: 100%;
-			height: 40%;
-			margin-bottom: -40upx;
-
-			.icon {
-				width: 16%;
-				height: 120upx;
-				margin: 10upx 10upx 20upx 20upx;
-				background-color: #FCE5DB;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				border-radius: 50upx;
-				box-shadow: 2upx 2upx 2upx #C70007;
-
-				.itemicon {
-					margin-top: 20upx;
-
-					.iconfont {
-						font-size: 50upx;
-						color: #C70007
-					}
-				}
-
-				text {
-					font-size: 30upx;
-					font-weight: 600;
-				}
-			}
-		}
-	}
+@import "./video.scss"
 </style>
