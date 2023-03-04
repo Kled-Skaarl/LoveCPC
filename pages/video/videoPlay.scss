@@ -68,6 +68,10 @@
 		position: relative;
 		top:150upx;
 		margin-top: 80upx;
+		/* #ifdef H5 */
+		margin-bottom: 100upx;
+		/* #endif */
+
 		height: 500upx;
 		width: 100%;
 		// height: 100%;
