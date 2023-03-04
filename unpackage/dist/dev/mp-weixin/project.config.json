@@ -6,6 +6,11 @@
     },
     "setting": {
         "urlCheck": false,
+        "es6": false,
+        "postcss": false,
+        "minified": false,
+        "newFeature": true,
+        "bigPackageSizeSupport": true,
         "babelSetting": {
             "ignore": [],
             "disablePlugins": [],
@@ -13,7 +18,7 @@
         }
     },
     "compileType": "miniprogram",
-    "libVersion": "2.26.0",
+    "libVersion": "2.25.3",
     "appid": "wxb79046a753e9f37d",
     "projectname": "loveCPC",
     "condition": {},

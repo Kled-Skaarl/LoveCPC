@@ -156,7 +156,7 @@
 
 <style lang="scss" scoped>
 	page {
-		background: url('@/static/img/materials/图层 20.png');
+		background: url('@/static/img/materials/photo20.png');
 		background-position: right;
 		min-height: 100%;
 	}

@@ -14,6 +14,14 @@ App.mpType = 'app'
 const app = new Vue({
     ...App
 })
+
+//挂载全局异步请求方法
+import * as request from '@/utils/request.js'
+for(let key in request){
+	Vue.prototype[key]=request[key]
+}
+
+
 app.$mount()
 import uView from "uview-ui";
 Vue.use(uView);

@@ -1,17 +1,19 @@
 <template>
 	<view>
 		<view class="background">
-			<img src="@/static/img/home/bgimg1.png" alt="">
-			<img src="@/static/img/home/bgimg2.png" alt="">
+			<image src="@/static/img/home/bgimg1.png" alt="">
+			<image src="@/static/img/home/bgimg2.png" alt="" id="bgimg2">
+			<view class="top-text">
+				<image src="../../static/img/home/redflag.png" alt="" id="redflag">
+					<view class="text">
+						<image src="@/static/img/home/loveCPC.png" alt="" id="loveCPC">
+						<image src="@/static/img/home/LOVE LEARNING HISTORY OF CPC.png" alt="" id="lovelearn">
+					</view>
+				
+			</view>
 		</view>
+		<!-- 搜索框 -->
 		<view class="content">
-			<view class="top-img1">
-				<img src="../../static/img/home/redflag.png" alt="">
-			</view>
-			<view class="top-img2">
-				<img src="@/static/img/home/loveCPC.png" alt="">
-				<img src="@/static/img/home/LOVE LEARNING HISTORY OF CPC.png" alt="">
-			</view>
 			<view class="search">
 				<search></search>
 			</view>
@@ -81,7 +83,7 @@
 			<view class="content">
 				<view class="linkItem" v-for="(item,index) in linkData" @click="handleWebLink(item.link)">
 					<view class="img">
-						<img :src="item.img" alt="">
+						<image :src="item.img" alt="">
 					</view>
 					<text> {{item.title}}</text>
 				</view>
@@ -157,7 +159,6 @@
 			}
 		},
 		onLoad() {
-
 		},
 		methods: {
 			//跳转至外部网站
@@ -183,260 +184,5 @@
 </script>
 
 <style lang="scss">
-	.background {
-		position: absolute;
-		z-index: -3;
-		margin-top: 0upx;
-
-		img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-			margin-bottom: -100upx;
-		}
-	}
-
-	.content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		position: relative;
-		height: 100%;
-
-		.top-img1 {
-			position: relative;
-			z-index: -1;
-			margin-top: 0
-		}
-
-		.top-img2 {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			position: absolute;
-			margin-top: -50upx;
-			z-index: 1;
-		}
-
-		.search {
-			position: absolute;
-			bottom: 10upx;
-			z-index: 2;
-		}
-	}
-
-	.wiper {
-		margin-top: 40upx;
-		padding: 0 25upx;
-		// height: 400upx;
-	}
-
-	.hot-spot {
-		display: flex;
-		// justify-content: space-between;
-		text-align: center;
-
-		width: 95%;
-		height: 750upx;
-		background-color: #FFFFFF;
-		margin: 40upx auto;
-		border-radius: 20upx;
-		flex-direction: column;
-
-		.head {
-			height: 10%;
-			display: flex;
-			align-items: center;
-			margin-top: 10upx;
-
-			.iconfont {
-				color: #E2000B;
-				font-size: 40upx;
-				margin-left: 20upx;
-			}
-
-			.text1 {
-				font-size: 32upx;
-				font-weight: 600;
-				margin-left: 10upx;
-			}
-
-			.text2 {
-				font-size: 28upx;
-				margin-left: 20upx;
-				color: #670F13;
-			}
-		}
-
-		.detail {
-			display: flex;
-			flex-direction: column;
-			width: 100%;
-			height: 90%;
-
-			.detailItem {
-				height: 35%;
-				width: 100%;
-				display: flex;
-
-				.left {
-					margin-left: 20upx;
-					height: 100%;
-					width: 45%;
-
-					img {
-						height: 75%;
-						width: 100%;
-					}
-				}
-
-				.right {
-					margin-left: 20upx;
-					display: flex;
-					flex-direction: column;
-					width: 55%;
-					text-align: left;
-
-					// align-items: center;
-					.text1 {
-						font-size: 30upx;
-					}
-
-					.rright {
-						display: flex;
-						text-align: right;
-
-						.text2 {
-
-							margin-right: 10upx;
-							margin-top: 30upx;
-							font-size: 20upx;
-							color: #E50012;
-						}
-
-						.iconfont {
-							color: #E50012;
-							margin-top: 30upx;
-						}
-					}
-
-				}
-			}
-		}
-
-		.bottom {
-			text-align: right;
-			margin: 0 40upx 10upx 0;
-			text {
-				color: #E50012;
-				font-weight: 600;
-				font-size: 30upx;
-				// text-decoration:underline;
-			}
-		}
-
-		.body {
-			display: flex;
-			flex-direction: column;
-			width: 100%;
-			height: 90%;
-
-			.bodyItem {
-				height: 35%;
-				width: 100%;
-				display: flex;
-				flex-direction: column;
-
-				.text1 {
-					text-align: left;
-					margin-left: 20upx;
-				}
-
-				.under {
-					margin-top: 10upx;
-					text-align: right;
-					margin-right: 30upx;
-
-					.text2 {
-						color: #E50012;
-						font-size: 22upx;
-					}
-
-					.iconfont {
-						color: #E50012;
-					}
-				}
-
-				.bottomLine {
-					width: 90%;
-					height: 2upx;
-					background: linear-gradient(244deg,rgba(255,255,255,0) 0%,rgba(229,0,18, 1) 50%,rgba(255,255,255,0) 100%);
-					margin-top: 20upx;
-				}
-			}
-		}
-	}
-
-	.learning-link {
-		width: 95%;
-		height: 350upx;
-		background-color: #FFFFFF;
-		margin: 40upx auto;
-		border-radius: 20upx;
-		opacity: 0.8;
-
-		.head {
-			display: flex;
-			text-align: center;
-			width: 100%;
-			height: 10%;
-
-			text {
-				margin: 20upx auto;
-				font-size: 32upx;
-				font-weight: 600;
-			}
-		}
-
-		.content {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			flex-direction: row;
-			width: 100%;
-			height: 80%;
-
-			.linkItem {
-				display: flex;
-				flex-direction: column;
-				text-align: center;
-				width: 25%;
-				height: 200upx;
-				margin: 30upx 0 0 0;
-
-				.img {
-					// margin: 0 0 0 10upx;
-					padding-left: 40upx;
-					width: 90%;
-					height: 60%;
-					display: flex;
-					align-items: center;
-					text-align: center;
-
-					img {
-						width: 70%
-					}
-				}
-
-				;
-
-				text {
-					font-size: 20upx;
-					margin-top: 20upx;
-					font-weight: 600;
-				}
-			}
-		}
-	}
+@import "./home.scss";
 </style>

@@ -25,7 +25,7 @@
 /* 透明度 */
 /* 文章场景相关 */
 page.data-v-7dee3ac0 {
-  background: url("/static/img/materials/图层 20.png");
+  background: url(/static/img/materials/photo20.png);
   background-position: right;
   min-height: 100%;
 }
