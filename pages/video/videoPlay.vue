@@ -41,6 +41,9 @@
 				</view>
 			</view>
 			<view class="detail">
+				<view class="top-title">
+					<text>{{title}}</text>
+				</view>
 				<mp-html :content="htmlText" />
 			</view>
 		</view>
@@ -81,6 +84,7 @@
 				if(this.all_videoData[key].title==this.title){
 					console.log(this.all_videoData[key]);
 					this.videoData.videoUrl=this.all_videoData[key].m3u8
+					this.htmlText=this.all_videoData[key].text
 				}
 			}
 		},

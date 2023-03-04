@@ -90,14 +90,14 @@
   position: relative;
   top: 200rpx;
   width: 95%;
-  height: 750rpx;
+  height: 850rpx;
   background-color: #FFFFFF;
   margin: 40rpx auto;
   border-radius: 20rpx;
   flex-direction: column;
 }
 .hot-spot .head {
-  height: 10%;
+  height: 20%;
   display: flex;
   align-items: center;
   margin-top: 10rpx;
@@ -108,7 +108,7 @@
   margin-left: 20rpx;
 }
 .hot-spot .head .text1 {
-  font-size: 22rpx;
+  font-size: 32rpx;
   font-weight: 600;
   margin-left: 10rpx;
 }
@@ -145,11 +145,13 @@
   text-align: left;
 }
 .hot-spot .detail .detailItem .right .text1 {
-  font-size: 30rpx;
+  font-size: 26rpx;
+  font-weight: 600;
 }
 .hot-spot .detail .detailItem .right .rright {
   display: flex;
-  text-align: right;
+  margin-left: 200rpx;
+  margin-top: 40rpx;
 }
 .hot-spot .detail .detailItem .right .rright .text2 {
   margin-right: 10rpx;

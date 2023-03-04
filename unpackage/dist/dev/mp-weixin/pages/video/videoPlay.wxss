@@ -136,4 +136,10 @@
   font-size: 32rpx;
   color: #131211;
 }
+.article .detail .top-title {
+  height: 100rpx;
+  margin-bottom: 50rpx;
+  font-size: 35rpx;
+  font-weight: 700;
+}
 
