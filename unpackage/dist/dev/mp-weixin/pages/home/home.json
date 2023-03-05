@@ -1,6 +1,7 @@
 {
-  "navigationBarTitleText": "uni-app",
+  "navigationBarTitleText": "爱学党史",
   "navigationStyle": "custom",
+  "enablePullDownRefresh": false,
   "usingComponents": {
     "search": "/components/search/search",
     "u-swiper": "/node-modules/uview-ui/components/u-swiper/u-swiper"

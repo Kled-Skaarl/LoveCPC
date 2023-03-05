@@ -17,23 +17,23 @@
 				:show-center-play-btn="false" object-fit="contain" :poster="videoData.imageUrl" :custom-cache="false"
 				show-mute-btn :muted="isMuted" @play="onStartPlay" @ended="handleEnded" @error="videoErrorCallback"
 				@fullscreenchange="fullscreenchange"></video>
-		
+
 			<!-- 控制按钮 - 播放 -->
 			<view v-if="!isPlaying" @tap="handlePlay"></view>
 			<!-- 控制按钮 - 暂停 -->
 			<view v-else @tap="handlePause"></view>
-		
+
 			<!-- 音量开关 - 取消静音 -->
 			<view v-if="isMuted" @tap="setIsMuted(false)"></view>
 			<!-- 音量开关 - 静音 -->
 			<view v-else @tap="setIsMuted(true)"></view>
-		
+
 			<!-- 点击遮罩 -->
 			<view class="mask" @click.stop="requestFullScreen"></view>
 		</view>
 		<!-- #endif -->
 
-		
+
 
 		<!-- #ifdef H5 -->
 		<view class="videoPlay" style="height: 400upx;">
@@ -69,8 +69,9 @@
 	import jsonData from '@/static/json/video.json'
 	// #ifdef H5
 	import Dplayer from 'dplayer'
+	import Hls from 'hls.js'
 	// #endif
-	
+
 	export default {
 		components: {
 			mpHtml
@@ -85,6 +86,7 @@
 				isPlaying: false,
 				// 静音
 				isMuted: false,
+				preload:'metadata',
 				// 控制条
 				isControls: true,
 				videoData: {
@@ -110,6 +112,23 @@
 			// 在自定义组件下，第二个参数传入组件实例 this，以操作组件内 <video> 组件。
 			this.videoContext = uni.createVideoContext("videoWrap", this);
 			// #ifdef H5
+			// this.dp = new Dplayer({
+			// 	//播放器的一些参数
+			// 	container: document.getElementById('dplayer'),
+			// 	autoplay: false, //是否自动播放
+			// 	theme: '#FADFA3', //主题色
+			// 	loop: true, //视频是否循环播放
+			// 	lang: 'zh-cn',
+			// 	screenshot: false, //是否开启截图
+			// 	hotkey: true, //是否开启热键
+			// 	preload: 'auto', //视频是否预加载
+			// 	volume: 0.7, //默认音量
+			// 	mutex: true, //阻止多个播放器同时播放，当前播放器播放时暂停其他播放器
+			// 	video: {
+			// 		url:this.videoData.videoUrl, //视频地址
+			// 		// url: 'http://boliu.hbzcyc.com/474975DDEFA/474975DDEFA.m3u8', //视频地址
+			// 	},
+			// });
 			this.dp = new Dplayer({
 				//播放器的一些参数
 				container: document.getElementById('dplayer'),
@@ -119,12 +138,20 @@
 				lang: 'zh-cn',
 				screenshot: false, //是否开启截图
 				hotkey: true, //是否开启热键
-				preload: 'auto', //视频是否预加载
+				preload: 'metadata', //视频是否预加载
 				volume: 0.7, //默认音量
 				mutex: true, //阻止多个播放器同时播放，当前播放器播放时暂停其他播放器
 				video: {
-					url:this.videoData.videoUrl, //视频地址
+					url: "https://cuc-cscs-party-oss-video.oss-cn-beijing.aliyuncs.com/e32b8/video_e32b8_mp4.m3u8", //视频地址
 					// url: 'http://boliu.hbzcyc.com/474975DDEFA/474975DDEFA.m3u8', //视频地址
+					type: 'hls',
+					customType: {
+						hls: function(video, player) {
+							const hls = new Hls() //实例化Hls  用于解析m3u8
+							hls.loadSource(video.src)
+							hls.attachMedia(video)
+						}
+					},
 				},
 			});
 			// #endif

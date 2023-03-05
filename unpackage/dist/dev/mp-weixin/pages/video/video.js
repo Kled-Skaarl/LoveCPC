@@ -101,10 +101,10 @@ var components
 try {
   components = {
     search: function () {
-      return __webpack_require__.e(/*! import() | components/search/search */ "components/search/search").then(__webpack_require__.bind(null, /*! @/components/search/search.vue */ 227))
+      return __webpack_require__.e(/*! import() | components/search/search */ "components/search/search").then(__webpack_require__.bind(null, /*! @/components/search/search.vue */ 225))
     },
     uniPagination: function () {
-      return Promise.all(/*! import() | uni_modules/uni-pagination/components/uni-pagination/uni-pagination */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-pagination/components/uni-pagination/uni-pagination")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-pagination/components/uni-pagination/uni-pagination.vue */ 242))
+      return Promise.all(/*! import() | uni_modules/uni-pagination/components/uni-pagination/uni-pagination */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-pagination/components/uni-pagination/uni-pagination")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-pagination/components/uni-pagination/uni-pagination.vue */ 240))
     },
   }
 } catch (e) {
@@ -153,14 +153,14 @@ var render = function () {
         _temp6 = _temp5.eventParams || _temp5["event-params"],
         item = _temp6.item
       var _temp5, _temp6
-      return _vm.handletoVideoPlay(item.videoID)
+      return _vm.handletoVideoPlay(item.title)
     }
     _vm.e3 = function ($event, item) {
       var _temp7 = arguments[arguments.length - 1].currentTarget.dataset,
         _temp8 = _temp7.eventParams || _temp7["event-params"],
         item = _temp8.item
       var _temp7, _temp8
-      return _vm.handletoVideoPlay(item.videoID)
+      return _vm.handletoVideoPlay(item.title)
     }
   }
   _vm.$mp.data = Object.assign(
@@ -210,10 +210,16 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _video = _interopRequireDefault(__webpack_require__(/*! @/static/json/video.json */ 166));
+//
+//
+//
+//
 //
 //
 //
@@ -298,6 +304,7 @@ exports.default = void 0;
 var _default = {
   data: function data() {
     return {
+      all_videoData: [],
       currentpage: 1,
       iconList: [{
         icon: 'iconfont icon-voice',
@@ -332,66 +339,24 @@ var _default = {
         title: '活动',
         id: 8
       }],
-      videoList: [{
-        img: '../../static/img/video/activity1.png',
-        title: '习近平：携手迎接挑战，合作开创未来————在博鳌亚洲论坛发表演讲',
-        videoID: 1
-      }, {
-        img: '../../static/img/video/activity2.png',
-        title: '北京冬奥会冬残奥会总结表彰大会在京举行',
-        videoID: 2
-      }, {
-        img: '../../static/img/video/activity1.png',
-        title: '习近平：携手迎接挑战，合作开创未来————在博鳌亚洲论坛发表演讲',
-        videoID: 3
-      }, {
-        img: '../../static/img/video/activity2.png',
-        title: '北京冬奥会冬残奥会总结表彰大会在京举行',
-        videoID: 4
-      }, {
-        img: '../../static/img/video/activity1.png',
-        title: '习近平：携手迎接挑战，合作开创未来————在博鳌亚洲论坛发表演讲',
-        videoID: 5
-      }, {
-        img: '../../static/img/video/activity2.png',
-        title: '北京冬奥会冬残奥会总结表彰大会在京举行',
-        videoID: 6
-      }, {
-        img: '../../static/img/video/activity1.png',
-        title: '习近平：携手迎接挑战，合作开创未来————在博鳌亚洲论坛发表演讲',
-        videoID: 7
-      }, {
-        img: '../../static/img/video/activity2.png',
-        title: '北京冬奥会冬残奥会总结表彰大会在京举行',
-        videoID: 8
-      }, {
-        img: '../../static/img/video/activity1.png',
-        title: '习近平：携手迎接挑战，合作开创未来————在博鳌亚洲论坛发表演讲',
-        videoID: 9
-      }, {
-        img: '../../static/img/video/activity2.png',
-        title: '北京冬奥会冬残奥会总结表彰大会在京举行',
-        videoID: 10
-      }, {
-        img: '../../static/img/video/activity1.png',
-        title: '习近平：携手迎接挑战，合作开创未来————在博鳌亚洲论坛发表演讲',
-        videoID: 11
-      }, {
-        img: '../../static/img/video/activity2.png',
-        title: '北京冬奥会冬残奥会总结表彰大会在京举行',
-        videoID: 12
-      }, {
-        img: '../../static/img/video/activity1.png',
-        title: '习近平：携手迎接挑战，合作开创未来————在博鳌亚洲论坛发表演讲',
-        videoID: 13
-      }, {
-        img: '../../static/img/video/activity2.png',
-        title: '北京冬奥会冬残奥会总结表彰大会在京举行',
-        videoID: 14
-      }]
+      videoList: []
     };
   },
-  onLoad: function onLoad() {},
+  onLoad: function onLoad() {
+    this.all_videoData = _video.default.slice(0, 30);
+    console.log(this.all_videoData);
+    for (var i in this.all_videoData) {
+      var tempData = {
+        img: '',
+        title: '',
+        id: 0
+      };
+      tempData.img = this.all_videoData[i].cover;
+      tempData.title = this.all_videoData[i].title;
+      tempData.id = this.all_videoData[i].id;
+      this.videoList.push(tempData);
+    }
+  },
   computed: {
     sliceVideoList: function sliceVideoList() {
       if (this.videoList != undefined) {
@@ -413,6 +378,12 @@ var _default = {
     handleClassify: function handleClassify(id) {
       console.log(id);
     },
+    //跳转至视频详情页
+    handletoVideoDetail: function handletoVideoDetail() {
+      uni.navigateTo({
+        url: './videoDetail'
+      });
+    },
     //分页功能
     handleChangePage: function handleChangePage(e) {
       // console.log(e);
@@ -421,10 +392,10 @@ var _default = {
       // console.log(this.sliceVideoList);
     },
     //跳转至视频播放页
-    handletoVideoPlay: function handletoVideoPlay(id) {
+    handletoVideoPlay: function handletoVideoPlay(itm) {
       // console.log(id);
       uni.navigateTo({
-        url: './videoPlay?id=' + id
+        url: './videoPlay?title=' + itm
       });
     }
   }

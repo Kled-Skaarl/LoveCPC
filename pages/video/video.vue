@@ -47,10 +47,14 @@
 				<i class="iconfont icon-shoucang"></i>
 				<text class="text1">最新活动-视频</text>
 				<text class="text2">不忘初心 牢记使命</text>
+				<view class="findall" @click="handletoVideoDetail()">
+					<text>查阅全部</text>
+				</view>
 			</view>
+
 			<view class="body">
 				<view class="videoItem" v-for="(item,index) in sliceVideoList[currentpage-1].slice(0,2)"
-					@click="handletoVideoPlay(item.videoID)">
+					@click="handletoVideoPlay(item.title)">
 					<img :src="item.img" alt="">
 					<view class="littleTitle">
 						<text>{{item.title}}</text>
@@ -60,7 +64,7 @@
 			</view>
 			<view class="body">
 				<view class="videoItem" v-for="(item,index) in sliceVideoList[currentpage-1].slice(2,4)"
-					@click="handletoVideoPlay(item.videoID)">
+					@click="handletoVideoPlay(item.title)">
 					<img :src="item.img" alt="">
 					<view class="littleTitle">
 						<text>{{item.title}}</text>
@@ -80,9 +84,11 @@
 </template>
 
 <script>
+	import jsonData from '@/static/json/video.json'
 	export default {
 		data() {
 			return {
+				all_videoData: [],
 				currentpage: 1,
 				iconList: [{
 						icon: 'iconfont icon-voice',
@@ -125,81 +131,23 @@
 						id: 8
 					},
 				],
-				videoList: [{
-						img: '../../static/img/video/activity1.png',
-						title: '习近平：携手迎接挑战，合作开创未来————在博鳌亚洲论坛发表演讲',
-						videoID: 1
-					},
-					{
-						img: '../../static/img/video/activity2.png',
-						title: '北京冬奥会冬残奥会总结表彰大会在京举行',
-						videoID: 2
-					},
-					{
-						img: '../../static/img/video/activity1.png',
-						title: '习近平：携手迎接挑战，合作开创未来————在博鳌亚洲论坛发表演讲',
-						videoID: 3
-					},
-					{
-						img: '../../static/img/video/activity2.png',
-						title: '北京冬奥会冬残奥会总结表彰大会在京举行',
-						videoID: 4
-					},
-					{
-						img: '../../static/img/video/activity1.png',
-						title: '习近平：携手迎接挑战，合作开创未来————在博鳌亚洲论坛发表演讲',
-						videoID: 5
-					},
-					{
-						img: '../../static/img/video/activity2.png',
-						title: '北京冬奥会冬残奥会总结表彰大会在京举行',
-						videoID: 6
-					},
-					{
-						img: '../../static/img/video/activity1.png',
-						title: '习近平：携手迎接挑战，合作开创未来————在博鳌亚洲论坛发表演讲',
-						videoID: 7
-					},
-					{
-						img: '../../static/img/video/activity2.png',
-						title: '北京冬奥会冬残奥会总结表彰大会在京举行',
-						videoID: 8
-					},
-					{
-						img: '../../static/img/video/activity1.png',
-						title: '习近平：携手迎接挑战，合作开创未来————在博鳌亚洲论坛发表演讲',
-						videoID: 9
-					},
-					{
-						img: '../../static/img/video/activity2.png',
-						title: '北京冬奥会冬残奥会总结表彰大会在京举行',
-						videoID: 10
-					},
-					{
-						img: '../../static/img/video/activity1.png',
-						title: '习近平：携手迎接挑战，合作开创未来————在博鳌亚洲论坛发表演讲',
-						videoID: 11
-					},
-					{
-						img: '../../static/img/video/activity2.png',
-						title: '北京冬奥会冬残奥会总结表彰大会在京举行',
-						videoID: 12
-					},
-					{
-						img: '../../static/img/video/activity1.png',
-						title: '习近平：携手迎接挑战，合作开创未来————在博鳌亚洲论坛发表演讲',
-						videoID: 13
-					},
-					{
-						img: '../../static/img/video/activity2.png',
-						title: '北京冬奥会冬残奥会总结表彰大会在京举行',
-						videoID: 14
-					},
-				]
+				videoList: []
 			}
 		},
 		onLoad() {
-
+			this.all_videoData=jsonData.slice(0,30)
+			console.log(this.all_videoData);
+			for(let i in this.all_videoData){
+				var tempData={
+					img:'',
+					title:'',
+					id:0
+				}
+				tempData.img=this.all_videoData[i].cover
+				tempData.title=this.all_videoData[i].title
+				tempData.id=this.all_videoData[i].id
+				this.videoList.push(tempData)
+			}
 		},
 		computed: {
 			sliceVideoList() {
@@ -223,6 +171,12 @@
 			handleClassify(id) {
 				console.log(id);
 			},
+			//跳转至视频详情页
+			handletoVideoDetail(){
+				uni.navigateTo({
+					url:'./videoDetail'
+				})
+			},
 			//分页功能
 			handleChangePage(e) {
 				// console.log(e);
@@ -231,10 +185,10 @@
 				// console.log(this.sliceVideoList);
 			},
 			//跳转至视频播放页
-			handletoVideoPlay(id) {
+			handletoVideoPlay(itm) {
 				// console.log(id);
 				uni.navigateTo({
-					url: './videoPlay?id=' + id
+					url: './videoPlay?title=' + itm
 				})
 			},
 		}

@@ -3,7 +3,7 @@
 		position: absolute;
 		z-index: -3;
 		margin-top: 0upx;
-		height: 100vh;
+		height: 110vh;
 		width: 100%;
 
 		image {
@@ -62,7 +62,7 @@
 		top:320upx;
 		width: 95%;
 		// height: 650upx;
-		height: auto;
+		height: 850upx;
 		padding-top: 20upx;
 		background-color: #FFFFFF;
 		margin: 40upx auto;
@@ -100,7 +100,7 @@
 			width: 100%;
 			// align-items: center;
 			text-align: center;
-			margin: 20upx auto;
+			margin: 20upx auto 0;
 			display: flex;
 			justify-content: space-between;
 
@@ -116,8 +116,8 @@
 
 				// align-items: center;
 				img {
-					width: 95%;
-					height: 60%;
+					width: 280upx;
+					height: 160upx;
 					margin: 10upx auto;
 				}
 
@@ -138,6 +138,23 @@
 
 			}
 		}
+		.findall{
+			margin-top: 0;
+			width: 20%;
+			height: 50upx;
+			background-color: #E50012;
+			border-radius: 25upx;
+			margin-left: auto;
+			margin-right: 20upx;
+			display: flex;
+			justify-content: center;
+			color: #FFFFFF;
+			// float: right;
+		}
+		.findall:hover{
+			background-color: #EECABE;
+		}
+
 
 	}
 

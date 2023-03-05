@@ -28,7 +28,7 @@
   position: absolute;
   z-index: -3;
   margin-top: 0rpx;
-  height: 100vh;
+  height: 110vh;
   width: 100%;
 }
 .background image {
@@ -82,7 +82,7 @@
   position: relative;
   top: 320rpx;
   width: 95%;
-  height: auto;
+  height: 850rpx;
   padding-top: 20rpx;
   background-color: #FFFFFF;
   margin: 40rpx auto;
@@ -113,7 +113,7 @@
   height: 35%;
   width: 100%;
   text-align: center;
-  margin: 20rpx auto;
+  margin: 20rpx auto 0;
   display: flex;
   justify-content: space-between;
 }
@@ -125,8 +125,8 @@
   flex-direction: column;
 }
 .videoList .body .videoItem ._img {
-  width: 95%;
-  height: 60%;
+  width: 280rpx;
+  height: 160rpx;
   margin: 10rpx auto;
 }
 .videoList .body .videoItem .littleTitle {
@@ -141,6 +141,21 @@
   color: #C70007;
   font-size: 36rpx;
   margin-right: 10rpx;
+}
+.videoList .findall {
+  margin-top: 0;
+  width: 20%;
+  height: 50rpx;
+  background-color: #E50012;
+  border-radius: 25rpx;
+  margin-left: auto;
+  margin-right: 20rpx;
+  display: flex;
+  justify-content: center;
+  color: #FFFFFF;
+}
+.videoList .findall:hover {
+  background-color: #EECABE;
 }
 .Classification {
   position: relative;

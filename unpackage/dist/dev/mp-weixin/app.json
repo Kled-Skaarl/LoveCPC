@@ -4,6 +4,7 @@
     "pages/video/video",
     "pages/materials/materials",
     "pages/video/videoPlay",
+    "pages/video/videoDetail",
     "pages/home/webpage",
     "pages/user/user",
     "pages/login/index"

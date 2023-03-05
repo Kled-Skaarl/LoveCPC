@@ -1,4 +1,5 @@
 {
-  "navigationBarTitleText": "登录",
+  "navigationBarTitleText": "爱学党史",
+  "navigationStyle": "custom",
   "usingComponents": {}
 }
