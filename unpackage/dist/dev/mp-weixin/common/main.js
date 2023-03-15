@@ -34,13 +34,13 @@ for (var key in request) {
   _vue.default.prototype[key] = request[key];
 }
 createApp(app).$mount();
-_vue.default.use(_uviewUi.default);
 var search = function search() {
   __webpack_require__.e(/*! require.ensure | components/search/search */ "components/search/search").then((function () {
-    return resolve(__webpack_require__(/*! @/components/search/search.vue */ 225));
+    return resolve(__webpack_require__(/*! @/components/search/search.vue */ 233));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 _vue.default.component('search', search);
+_vue.default.use(_uviewUi.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["createApp"]))
 
 /***/ }),

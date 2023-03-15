@@ -101,7 +101,7 @@ var components
 try {
   components = {
     mpHtml: function () {
-      return Promise.all(/*! import() | uni_modules/mp-html/components/mp-html/mp-html */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/mp-html/components/mp-html/mp-html")]).then(__webpack_require__.bind(null, /*! @/uni_modules/mp-html/components/mp-html/mp-html.vue */ 260))
+      return Promise.all(/*! import() | uni_modules/mp-html/components/mp-html/mp-html */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/mp-html/components/mp-html/mp-html")]).then(__webpack_require__.bind(null, /*! @/uni_modules/mp-html/components/mp-html/mp-html.vue */ 268))
     },
   }
 } catch (e) {
@@ -168,7 +168,7 @@ exports.default = void 0;
 var _video = _interopRequireDefault(__webpack_require__(/*! @/static/json/video.json */ 166));
 var mpHtml = function mpHtml() {
   Promise.all(/*! require.ensure | node-modules/mp-html/dist/uni-app/components/mp-html/mp-html */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/mp-html/dist/uni-app/components/mp-html/mp-html")]).then((function () {
-    return resolve(__webpack_require__(/*! mp-html/dist/uni-app/components/mp-html/mp-html */ 268));
+    return resolve(__webpack_require__(/*! mp-html/dist/uni-app/components/mp-html/mp-html */ 276));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var _default = {

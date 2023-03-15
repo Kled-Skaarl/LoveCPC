@@ -23,8 +23,7 @@ for(let key in request){
 
 
 app.$mount()
-import uView from "uview-ui";
-Vue.use(uView);
+
 // #endif
 import search from "@/components/search/search.vue"
 Vue.component('search',search)
@@ -37,3 +36,6 @@ export function createApp() {
   }
 }
 // #endif
+
+import uView from "uview-ui";
+Vue.use(uView);
