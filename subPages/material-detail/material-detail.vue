@@ -12,8 +12,8 @@
 		<view class="page-content">
 			<view class="header">
 				<view class="title-wrap">
-					<text class="category">{{originalData.category}}</text>
-					<text class="title">{{originalData.title}}</text>
+					<text class="category">{{originalData.topic}}</text>
+					<text class="title">{{originalData.log_Title}}</text>
 				</view>
 				<view class="tools">
 					<navigator class="back-mater" url="/pages/materials/materials" open-type="switchTab">返回分类 <i
@@ -24,32 +24,33 @@
 			<view class="article-card">
 				<view class="top">
 					<view class="title-wrap">
-						<text class="source">{{originalData.article.source}}</text>
-						<text class="news_date">{{originalData.article.news_date | date('yyyy-mm-dd hh:MM')}}</text>
+						<text class="source">{{originalData.from}}</text>
+						<text class="news_date">{{originalData.time}}</text>
+						<text class="news_date">{{originalData.editor}}</text>
 					</view>
 					<view class="tools">
 						<i class="iconfont icon-a-bijibenbiji"></i>
-						<i class="iconfont" :class="originalData.article.collected ? 'icon-shoucang2':'icon-shoucang3'"
+						<i class="iconfont" :class="originalData.topic ? 'icon-shoucang2':'icon-shoucang3'"
 							@tap="handleCollected"></i>
 						<i class="iconfont icon-erweima"></i>
 					</view>
 				</view>
 				<view class="main">
 					<view class="title-wrap">
-						<text class="title">{{originalData.article.title}}</text>
-						<text class="sub-title">{{originalData.article.sub_title}}</text>
+						<text class="title">{{originalData.log_Title}}</text>
+						<!-- <text class="sub-title">{{originalData.article.sub_title}}</text> -->
 					</view>
 					<view class="cover">
-						<image :src="originalData.article.cover" mode="widthFix" style="width: 100%;"></image>
+						<!-- <image :src="originalData.article.cover" mode="widthFix" style="width: 100%;"></image> -->
 					</view>
 					<view class="original_title">
 						<view class="line"></view>
-						<view class="text">{{originalData.article.original_title}}</view>
+						<!-- <view class="text">{{originalData.article.original_title}}</view> -->
 						<view class="line"></view>
 					</view>
 					<view class="original original-overflow" ref="original" @tap="contentClick">
 						<!-- 资料原文 -->
-						<u-parse :content="originalData.article.original"></u-parse>
+						<u-parse :content="originalData.log_Content" class="r_txt"></u-parse>
 					</view>
 				</view>
 			</view>
@@ -58,9 +59,16 @@
 </template>
 
 <script>
+	import {
+		tags
+	} from '../../static/json/zbp1_post_tag.js'
+	import {
+		findArticleById
+	} from '../../utils/TagsNameHelper.js'
 	export default {
 		data() {
 			return {
+				id: 0,
 				originalData: {
 					id: 4,
 					category: '百年影像',
@@ -173,9 +181,11 @@
 		},
 		onLoad(options) {
 			console.log(options.id);
+			this.id = options.id
 		},
-		onReady() {
-			this.getArticleData();
+		beforeMount() {
+			this.originalData = findArticleById(tags, +this.id)
+			console.log(this.originalData);
 		},
 		methods: {
 			handleCollected() {
@@ -199,8 +209,8 @@
 			getArticleData() {
 				this.$nextTick(() => {
 					let query = uni.createSelectorQuery().in(this);
-					console.log(query,'s');
-					console.log(query.select('.original'),'s2');
+					console.log(query, 's');
+					console.log(query.select('.original'), 's2');
 					query.select('.original .d2txt_con').boundingClientRect().exec(res => {
 						console.log(res);
 					});
@@ -214,6 +224,7 @@
 	page {
 		background: url('@/static/img/materials/light_red.png');
 		min-height: 100%;
+		
 	}
 
 	.page-header {
@@ -247,6 +258,7 @@
 	.page-content {
 		padding: 25upx;
 		background: url('@/static/img/materials/azalea.png') left;
+
 		>.header {
 			padding: 10upx 0;
 			display: flex;
@@ -474,6 +486,7 @@
 				}
 
 				.original-overflow /deep/ {
+
 					.d2txt {
 						// display: -webkit-box;
 						// -webkit-box-orient: vertical;

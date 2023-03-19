@@ -1,19 +1,21 @@
 {
   "pages": [
+    "pages/login/index",
     "pages/home/home",
     "pages/video/video",
+    "pages/login/register",
     "pages/materials/materials",
     "pages/video/videoPlay",
     "pages/video/videoDetail",
     "pages/home/webpage",
-    "pages/user/user",
-    "pages/login/index"
+    "pages/user/user"
   ],
   "subPackages": [
     {
       "root": "subPages",
       "pages": [
-        "material-detail/material-detail"
+        "material-detail/material-detail",
+        "list/list"
       ]
     }
   ],
@@ -39,7 +41,7 @@
         "pagePath": "pages/materials/materials",
         "iconPath": "static/img/materials.png",
         "selectedIconPath": "static/img/materials-active.png",
-        "text": "党史资料"
+        "text": "党媒咨询"
       },
       {
         "pagePath": "pages/video/video",

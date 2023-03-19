@@ -3,7 +3,21 @@
 		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
 	},
 	"pages": [{
+			"path": "pages/login/index",
+			"name": "index",
+			"meta": {
+				"title": "登录"
+			},
+			"style": {
+				"navigationBarTitleText": "爱学党史",
+				"navigationStyle": "custom"
+			}
+		},{
 			"path": "pages/home/home",
+			"name": "home",
+			"meta": {
+				"title": "首页"
+			},
 			"style": {
 				"navigationBarTitleText": "爱学党史",
 				"navigationStyle": "custom",
@@ -11,14 +25,35 @@
 			}
 		}, {
 			"path": "pages/video/video",
+			"name": "video",
+			"meta": {
+				"title": "视频"
+			},
 			"style": {
 				"navigationBarTitleText": "爱学党史",
 				"navigationStyle": "custom",
 				"enablePullDownRefresh": false
 			}
 
-		}, {
+		}, 
+		{
+			"path": "pages/login/register",
+			"name": "register",
+			"meta": {
+				"title": "注册"
+			},
+			"style": {
+				"navigationBarTitleText": "爱学党史",
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
 			"path": "pages/materials/materials",
+			"name": "materials",
+			"meta": {
+				"title": "资料"
+			},
 			"style": {
 				"navigationBarTitleText": "爱学党史",
 				"navigationStyle": "custom",
@@ -28,6 +63,10 @@
 		},
 		{
 			"path": "pages/video/videoPlay",
+			"name": "videoPlay",
+			"meta": {
+				"title": "视频播放"
+			},
 			"style": {
 				"navigationBarTitleText": "爱学党史",
 				"navigationStyle": "custom",
@@ -37,6 +76,10 @@
 		},
 		{
 			"path": "pages/video/videoDetail",
+			"name": "videoDetail",
+			"meta": {
+				"title": "视频详情"
+			},
 			"style": {
 				"navigationBarTitleText": "爱学党史",
 				"navigationStyle": "custom",
@@ -46,6 +89,10 @@
 		},
 		{
 			"path": "pages/home/webpage",
+			"name": "webpage",
+			"meta": {
+				"title": "外部网页"
+			},
 			"style": {
 				"navigationBarTitleText": "爱学党史",
 				"navigationStyle": "custom",
@@ -54,19 +101,17 @@
 		},
 		{
 			"path": "pages/user/user",
+			"name": "user",
+			"meta": {
+				"title": "个人"
+			},
 			"style": {
 				"navigationBarTitleText": "爱学党史",
 				"navigationStyle": "custom",
 				"enablePullDownRefresh": false
 			}
-		},
-		{
-			"path": "pages/login/index",
-			"style": {
-				"navigationBarTitleText": "爱学党史",
-				"navigationStyle": "custom"
-			}
 		}
+
 	],
 	"style": "v2",
 	"sitemapLocation": "sitemap.json",
@@ -106,6 +151,15 @@
 				"navigationStyle": "custom",
 				"enablePullDownRefresh": false
 			}
+		}, {
+			"path": "list/list",
+			"name": "list",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false
+			}
+
 		}]
 	}],
 	"globalStyle": {
@@ -128,7 +182,7 @@
 				"pagePath": "pages/materials/materials",
 				"iconPath": "static/img/materials.png",
 				"selectedIconPath": "static/img/materials-active.png",
-				"text": "党史资料"
+				"text": "党媒咨询"
 			}, {
 				"pagePath": "pages/video/video",
 				"iconPath": "static/img/video.png",

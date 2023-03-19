@@ -1,15 +1,9 @@
-import App from './App'
-
-// Api函数polyfill（目前为实验版本，如不需要，可删除！）';
-// import Polyfill from './polyfill/polyfill';
-// Polyfill.init();
-
-// // 全局mixins，用于实现setData等功能，请勿删除！';
-// import Mixin from './polyfill/mixins';
-
-// #ifndef VUE3
 import Vue from 'vue'
-Vue.config.productionTip = false
+import App from './App'
+import {router,RouterMount} from '@/router.js'  //路径换成自己的
+// console.log(router);
+Vue.use(router)
+
 App.mpType = 'app'
 const app = new Vue({
     ...App
@@ -20,22 +14,16 @@ import * as request from '@/utils/request.js'
 for(let key in request){
 	Vue.prototype[key]=request[key]
 }
-
-
-app.$mount()
-
-// #endif
 import search from "@/components/search/search.vue"
 Vue.component('search',search)
-// #ifdef VUE3
-import { createSSRApp } from 'vue'
-export function createApp() {
-  const app = createSSRApp(App)
-  return {
-    app
-  }
-}
-// #endif
-
 import uView from "uview-ui";
 Vue.use(uView);
+
+//v1.3.5起 H5端 你应该去除原有的app.$mount();使用路由自带的渲染方式
+// #ifdef H5
+	RouterMount(app,router,'#app')
+// #endif
+
+// #ifndef H5
+	app.$mount(); //为了兼容小程序及app端必须这样写才有效果
+// #endif

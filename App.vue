@@ -18,4 +18,8 @@
 	/* 全局引入iconfont */
 	@import url("@/font/iconfont.css");
 	@import "uview-ui/index.scss";
+	
+	p{
+		background-color: transparent!important;
+	}
 </style>

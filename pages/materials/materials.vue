@@ -6,14 +6,14 @@
 			</view>
 			<view class="top-img2">
 				<image src="@/static/img/home/loveCPC.png" alt="" style="width: 328rpx; height: 148rpx;">
-				<image src="@/static/img/home/sss.png" alt="" style="width: 444rpx; height: 48rpx;">
+					<image src="@/static/img/home/sss.png" alt="" style="width: 444rpx; height: 48rpx;">
 			</view>
 			<view class="search">
-				<search></search>
+				<search all_videoData="tags"></search>
 			</view>
 		</view>
 		<view class="page-content">
-			<view class="card-wrap" v-for="item in cardList" :key="item.id">
+			<view class="card-wrap" v-for="item in cardList" :key="item.log_ID">
 				<card :obj="item"></card>
 			</view>
 		</view>
@@ -21,6 +21,12 @@
 </template>
 
 <script>
+	import {
+		tags
+	} from '../../static/json/zbp1_post_tag.js'
+	import {
+		TagsNameHelper
+	} from '../../utils/TagsNameHelper.js'
 	export default {
 		data() {
 			return {
@@ -61,7 +67,7 @@
 						title: '学习百年党史 笃定理想信念',
 						collected: true,
 						articleList: [{
-							article_id: 5,
+								article_id: 5,
 								title: '五四青年节',
 								sub_title: '每一种奋斗的姿态，都是怒放的青春',
 								content: '青春的力量，不是时光的力量，而是梦想的力量。只有把自己的小我融入祖国的大我、人民的大我之中，与时代同步伐、与人民共命运，才能更好实现人生价值、升华人生境界。只有把自己的小我融入祖国的大我、人民的大我之中，与时代同步伐、与人民共命运，才能更好实现人生价值、升华人生境界。'
@@ -92,7 +98,7 @@
 						title: '勇往直前走向胜利',
 						collected: false,
 						articleList: [{
-							article_id: 9,
+								article_id: 9,
 								title: '五四青年节',
 								sub_title: '每一种奋斗的姿态，都是怒放的青春',
 								content: '青春的力量，不是时光的力量，而是梦想的力量。只有把自己的小我融入祖国的大我、人民的大我之中，与时代同步伐、与人民共命运，才能更好实现人生价值、升华人生境界。只有把自己的小我融入祖国的大我、人民的大我之中，与时代同步伐、与人民共命运，才能更好实现人生价值、升华人生境界。'
@@ -123,7 +129,7 @@
 						title: '百炼成钢 历久弥新',
 						collected: true,
 						articleList: [{
-							article_id: 13,
+								article_id: 13,
 								title: '五四青年节',
 								sub_title: '每一种奋斗的姿态，都是怒放的青春',
 								content: '青春的力量，不是时光的力量，而是梦想的力量。只有把自己的小我融入祖国的大我、人民的大我之中，与时代同步伐、与人民共命运，才能更好实现人生价值、升华人生境界。只有把自己的小我融入祖国的大我、人民的大我之中，与时代同步伐、与人民共命运，才能更好实现人生价值、升华人生境界。'
@@ -150,6 +156,10 @@
 					}
 				]
 			};
+		},
+		beforeMount() {
+			this.cardList = TagsNameHelper(tags);
+			console.log(this.cardList)
 		}
 	}
 </script>

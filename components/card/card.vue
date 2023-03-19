@@ -4,9 +4,9 @@
 	<view  class="card " ref="card" >
 		<view class="header">
 			<view class="title-wrap">
-				<navigator :url="'/subPages/material-detail/material-detail?id='+obj.id">
-					<text class="category">{{obj.category}}</text>
-					<text class="title">{{obj.title}}</text>
+				<navigator :url="'/subPages/list/list?tagType='+obj[0].topic">
+					<text class="category">{{obj[0].topic}}</text>
+					<!-- <text class="title">{{obj.logotitle}}</text> -->
 				</navigator>
 			</view>
 			<view class="tools">
@@ -17,13 +17,13 @@
 			</view>
 		</view>
 		<view class="article text-overflow" @tap="contentClick">
-			<view class="item" v-for="(item,index) in obj.articleList" :key="index">
+			<view class="item" v-for="(item,index) in obj" :key="index">
 				<navigator class="title-wrap" @tap.stop
-					:url="'/subPages/material-detail/material-detail?id='+item.article_id">
-					<text class="title">{{item.title}}</text>
-					<text class="sub-title">{{item.sub_title}}</text>
+					:url="'/subPages/material-detail/material-detail?id='+item.log_ID">
+					<text class="title">{{item.log_Title}}</text>
+					<!-- <text class="sub-title">{{item.sub_title}}</text> -->
 				</navigator>
-				<view class="content">{{item.content}}</view>
+				<!-- <view class="content" v-html="item.log_Content"></view> -->
 			</view>
 		</view>
 	</view>
@@ -35,14 +35,23 @@
 		name: "card",
 		props: {
 			obj: {
-				type: Object,
-				required: true
+				type: Array,
+				required: true,
+				default:[{
+					topic: '',
+					log_ID: 0,
+					log_Title:'',
+					log_Content:''
+				}]
 			}
 		},
 		data() {
 			return {
 
 			};
+		},
+		mounted() {
+			console.log(this.obj);
 		},
 		methods: {
 			contentClick() {
