@@ -181,9 +181,9 @@ var _default = {
   methods: {
     logIn: function logIn() {
       // console.log(this.userid,this.password);
-      // this.$get(`/login/${this.userid}/${this.password}`).then((res)=>{
-      // 	console.log(res);
-      // })
+      this.$get(":5000/login/".concat(this.userid, "/").concat(this.password)).then(function (res) {
+        console.log(res);
+      });
       uni.setStorageSync('id', this.userid);
       uni.setStorageSync('password', this.password);
       this.$Router.pushTab({

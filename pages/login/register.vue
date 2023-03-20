@@ -19,14 +19,18 @@
 				</view>
 				<view class="input-pw">
 					<p style="margin-left: 10upx;">确认密码：</p>
-					<input v-model="password" placeholder="请重新输入密码" type="password">
+					<input v-model="repassword" placeholder="请重新输入密码" type="password">
+
 				</view>
+				<p style="color: red;" v-show="errtag">两次输入密码不一致！</p>
 			</view>
 			<view class="btn">
-<!-- 				<button class="btn-item" style="background-color: #F50100;" @click="logIn()">登录</button> -->
-				<button class="btn-item" style="background-color: #FAE092;" @click="getToRegister()">注册</button>
+				<!-- 				<button class="btn-item" style="background-color: #F50100;" @click="logIn()">登录</button> -->
+				<button class="btn-item" style="background-color: #FAE092;" @click="Register()">注册</button>
 			</view>
 		</view>
+		<!-- 消息提示 -->
+		<u-toast ref="uToast"></u-toast>
 	</view>
 </template>
 
@@ -37,10 +41,75 @@
 			return {
 				userid: '',
 				password: '',
+				repassword: '',
+				errtag: false
+			}
+		},
+		watch: {
+			repassword: {
+				handler() {
+					if (this.password == '') {
+						return
+					} else {
+						this.errtag = true
+					}
+					// this.errtag=true
+					if (this.repassword == this.password & this.password != '') {
+						this.errtag = false
+					}
+					// console.log(this.errtag)
+				},
+				immediate: true,
+				deep: true
+			},
+			password: {
+				handler() {
+					if (this.password == '') {
+						this.errtag = false
+					}
+				}
 			}
 		},
 		methods: {
-			
+			showTost(params) {
+				this.$refs.uToast.show({
+					...params
+				})
+			},
+			Register() {
+				let that=this
+				this.$get(`:5000/register/${this.userid}/${this.password}`).then((res) => {
+					if (res.data.status == "success") {
+						// 注册成功
+						that.showTost({
+							'message': '注册成功!',
+							'duration': 2000, // 加载1s
+							'position': 'bottom',
+							'type': 'success',
+							complete() {
+								console.log(111);
+								that.$Router.pushTab({
+									path: "/pages/login/index"
+								})
+							}
+						})
+					}else if(res.data.error == "username is exist"){
+						// console.log(res.data.error);
+						that.showTost({
+							'message': '该用户名已存在!',
+							'duration': 2000, // 加载1s
+							'position': 'bottom',
+							'type': 'error',
+							complete() {
+								that.userid='',
+								that.password='',
+								that.repassword=''
+							}
+						})
+					}
+					console.log(res);
+				})
+			}
 		}
 	}
 </script>
@@ -78,10 +147,13 @@
 		}
 
 		.card {
-			background-color: white;
+			// background-color: white;
 			width: 95%;
 			height: 50%;
 			position: absolute;
+			background: rgba(255, 255, 255, .7);
+			-webkit-backdrop-filter: blur(10upx);
+			backdrop-filter: blur(10upx);
 			top: 25%;
 			border-radius: 30upx;
 			text-align: center;
@@ -101,17 +173,19 @@
 				// position: absolute;
 				width: 100%;
 				// height: 80%;
-				margin-top: 180upx;
+				margin-top: 150upx;
 
 				.input-id {
 					display: flex;
 					justify-content: space-between;
+					padding-bottom: 20upx;
 				}
 
 				.input-pw {
 					margin-top: 50upx;
 					display: flex;
 					justify-content: space-between;
+					padding-bottom: 20upx;
 				}
 
 				p {
@@ -121,8 +195,9 @@
 				input {
 					outline-style: none;
 					border: 1px solid #ccc;
-					border-radius: 3px;
-					height: 50upx;
+					border-radius: 5px;
+					background-color: white;
+					height: 70upx;
 					width: 70%;
 					margin-right: 40upx;
 				}
@@ -132,7 +207,7 @@
 				position: absolute;
 				width: 100%;
 				height: 100upx;
-				bottom: 200upx;
+				bottom: 100upx;
 				display: flex;
 				justify-content: space-between;
 

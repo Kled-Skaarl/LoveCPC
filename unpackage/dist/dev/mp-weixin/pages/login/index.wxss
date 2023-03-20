@@ -51,10 +51,12 @@
   z-index: 100;
 }
 .box .card {
-  background-color: white;
-  width: 85%;
+  width: 95%;
   height: 50%;
   position: absolute;
+  background: rgba(255, 255, 255, 0.7);
+  -webkit-backdrop-filter: blur(10rpx);
+  backdrop-filter: blur(10rpx);
   top: 25%;
   border-radius: 30rpx;
   text-align: center;
@@ -70,16 +72,18 @@
 }
 .box .card .form {
   width: 100%;
-  margin-top: 180rpx;
+  margin-top: 150rpx;
 }
 .box .card .form .input-id {
   display: flex;
   justify-content: space-between;
+  padding-bottom: 20rpx;
 }
 .box .card .form .input-pw {
   margin-top: 50rpx;
   display: flex;
   justify-content: space-between;
+  padding-bottom: 20rpx;
 }
 .box .card .form ._p {
   margin-left: 50rpx;
@@ -87,8 +91,9 @@
 .box .card .form input {
   outline-style: none;
   border: 1px solid #ccc;
-  border-radius: 3px;
-  height: 50rpx;
+  border-radius: 5px;
+  background-color: white;
+  height: 70rpx;
   width: 70%;
   margin-right: 40rpx;
 }
@@ -96,7 +101,7 @@
   position: absolute;
   width: 100%;
   height: 100rpx;
-  bottom: 250rpx;
+  bottom: 100rpx;
   display: flex;
   justify-content: space-between;
 }

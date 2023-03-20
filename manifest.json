@@ -69,6 +69,17 @@
                         "UniversalLinks" : ""
                     }
                 }
+            },
+            "icons" : {
+                "android" : {
+                    "hdpi" : "static/logo/72x72.png",
+                    "xhdpi" : "static/logo/96x96.png",
+                    "xxhdpi" : "static/logo/144x144.png",
+                    "xxxhdpi" : "static/logo/192x192.png"
+                },
+                "ios" : {
+                    "appstore" : "static/logo/1024x1024.png"
+                }
             }
         }
     },

@@ -23,11 +23,15 @@
 				<button class="btn-item" style="background-color: #FAE092;" @click="getToRegister()">注册</button>
 			</view>
 		</view>
+		<!-- 消息提示 -->
+		<u-toast ref="uToast"></u-toast>
 	</view>
 </template>
 
 <script>
-import { router } from '../../router'
+	import {
+		router
+	} from '../../router'
 	export default {
 		data() {
 			name: 'login'
@@ -37,18 +41,66 @@ import { router } from '../../router'
 			}
 		},
 		methods: {
-			logIn(){
-				// console.log(this.userid,this.password);
-				// this.$get(`/login/${this.userid}/${this.password}`).then((res)=>{
-				// 	console.log(res);
-				// })
-				uni.setStorageSync('id', this.userid)
-				uni.setStorageSync('password',this.password)
-				this.$Router.pushTab({path:"/pages/home/home"})
+			showTost(params) {
+				this.$refs.uToast.show({
+					...params
+				})
+			},
+			logIn() {
+				var that = this
+				this.$get(`:5000/login/${this.userid}/${this.password}`).then((res) => {
+					console.log(res);
+					if (res.data.stauts == 'success') {
+						uni.setStorageSync('id', this.userid)
+						uni.setStorageSync('password', this.password)
+						uni.setStorageSync('token', res.data.token)
+						that.showTost({
+							'message': '登录成功!',
+							'duration': 1000, // 加载1s
+							// 'loading': true,
+							'position': 'bottom',
+							'type': 'success',
+							complete() {
+								that.$Router.pushTab({
+									path: "/pages/home/home"
+								})
+							}
+						})
+					} else if (res.data.error == 'password is wrong') {
+						that.showTost({
+							'message': '密码错误!',
+							'duration': 1000, // 加载1s
+							'position': 'bottom',
+							'type': 'error',
+							complete() {
+								that.userid = ''
+								that.password = ''
+							}
+						})
+					} else {
+						that.showTost({
+							'message': '用户名不存在!',
+							'duration': 1000, // 加载1s
+							'position': 'bottom',
+							'type': 'error',
+							complete() {
+								that.userid = ''
+								that.password = ''
+							}
+						})
+					}
+
+				}).catch((err) => {
+					console.log(err);
+				})
+
+
 			},
 			getToRegister() {
 				console.log(uni.getStorageSync('id'))
-				this.$Router.push({path:"/pages/login/register"})
+				this.$Router.push({
+					path: "/pages/login/register"
+				})
 			}
 		}
 	}
@@ -87,10 +139,13 @@ import { router } from '../../router'
 		}
 
 		.card {
-			background-color: white;
-			width: 85%;
+			// background-color: white;
+			width: 95%;
 			height: 50%;
 			position: absolute;
+			background: rgba(255, 255, 255, .7);
+			-webkit-backdrop-filter: blur(10upx);
+			backdrop-filter: blur(10upx);
 			top: 25%;
 			border-radius: 30upx;
 			text-align: center;
@@ -110,17 +165,19 @@ import { router } from '../../router'
 				// position: absolute;
 				width: 100%;
 				// height: 80%;
-				margin-top: 180upx;
+				margin-top: 150upx;
 
 				.input-id {
 					display: flex;
 					justify-content: space-between;
+					padding-bottom: 20upx;
 				}
 
 				.input-pw {
 					margin-top: 50upx;
 					display: flex;
 					justify-content: space-between;
+					padding-bottom: 20upx;
 				}
 
 				p {
@@ -130,8 +187,9 @@ import { router } from '../../router'
 				input {
 					outline-style: none;
 					border: 1px solid #ccc;
-					border-radius: 3px;
-					height: 50upx;
+					border-radius: 5px;
+					background-color: white;
+					height: 70upx;
 					width: 70%;
 					margin-right: 40upx;
 				}
@@ -141,7 +199,7 @@ import { router } from '../../router'
 				position: absolute;
 				width: 100%;
 				height: 100upx;
-				bottom: 250upx;
+				bottom: 100upx;
 				display: flex;
 				justify-content: space-between;
 
