@@ -42,7 +42,8 @@
 				userid: '',
 				password: '',
 				repassword: '',
-				errtag: false
+				errtag: false,
+				flag: false
 			}
 		},
 		watch: {
@@ -56,6 +57,7 @@
 					// this.errtag=true
 					if (this.repassword == this.password & this.password != '') {
 						this.errtag = false
+						this.flag = true
 					}
 					// console.log(this.errtag)
 				},
@@ -77,7 +79,17 @@
 				})
 			},
 			Register() {
-				let that=this
+				if (this.flag == false) {
+					this.showTost({
+						'message': '请输入账号和密码!',
+						'duration': 2000, // 加载1s
+						'position': 'bottom',
+						'type': 'error',
+						complete() {}
+					})
+					return
+				}
+				let that = this
 				this.$get(`:5000/register/${this.userid}/${this.password}`).then((res) => {
 					if (res.data.status == "success") {
 						// 注册成功
@@ -93,17 +105,17 @@
 								})
 							}
 						})
-					}else if(res.data.error == "username is exist"){
+					} else if (res.data.error == "username is exist") {
 						// console.log(res.data.error);
 						that.showTost({
-							'message': '该用户名已存在!',
+							'message': '该账号已存在!',
 							'duration': 2000, // 加载1s
 							'position': 'bottom',
 							'type': 'error',
 							complete() {
-								that.userid='',
-								that.password='',
-								that.repassword=''
+								that.userid = '',
+									that.password = '',
+									that.repassword = ''
 							}
 						})
 					}
@@ -211,6 +223,7 @@
 				display: flex;
 				justify-content: space-between;
 
+				// pointer-events: none;
 				.btn-item {
 					height: 80%;
 					width: 40%;

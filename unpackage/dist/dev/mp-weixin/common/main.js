@@ -38,7 +38,7 @@ for (var key in request) {
 }
 var search = function search() {
   __webpack_require__.e(/*! require.ensure | components/search/search */ "components/search/search").then((function () {
-    return resolve(__webpack_require__(/*! @/components/search/search.vue */ 244));
+    return resolve(__webpack_require__(/*! @/components/search/search.vue */ 253));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 _vue.default.component('search', search);

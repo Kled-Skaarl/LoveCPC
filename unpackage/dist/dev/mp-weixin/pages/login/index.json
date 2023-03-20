@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "爱学党史",
   "navigationStyle": "custom",
-  "usingComponents": {}
+  "usingComponents": {
+    "u-toast": "/node-modules/uview-ui/components/u-toast/u-toast"
+  }
 }

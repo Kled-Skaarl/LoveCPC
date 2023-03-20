@@ -47,6 +47,17 @@
 				})
 			},
 			logIn() {
+				if (this.userid == '' || this.password == '') {
+					this.showTost({
+						'message': '请输入账号和密码!',
+						'duration': 1000, // 加载1s
+						// 'loading': true,
+						'position': 'bottom',
+						'type': 'error',
+						complete() {}
+					})
+					return
+				}
 				var that = this
 				this.$get(`:5000/login/${this.userid}/${this.password}`).then((res) => {
 					console.log(res);
@@ -79,7 +90,7 @@
 						})
 					} else {
 						that.showTost({
-							'message': '用户名不存在!',
+							'message': '账号不存在!',
 							'duration': 1000, // 加载1s
 							'position': 'bottom',
 							'type': 'error',

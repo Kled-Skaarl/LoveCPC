@@ -98,6 +98,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
+try {
+  components = {
+    uToast: function () {
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-toast/u-toast */ "node-modules/uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! uview-ui/components/u-toast/u-toast.vue */ 260))
+    },
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
 var render = function () {
   var _vm = this
   var _h = _vm.$createElement
@@ -137,39 +160,15 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
 var _router = __webpack_require__(/*! ../../router */ 33);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var _default = {
   data: function data() {
     name: 'login';
@@ -179,15 +178,58 @@ var _default = {
     };
   },
   methods: {
+    showTost: function showTost(params) {
+      this.$refs.uToast.show(_objectSpread({}, params));
+    },
     logIn: function logIn() {
-      // console.log(this.userid,this.password);
+      var _this = this;
+      var that = this;
       this.$get(":5000/login/".concat(this.userid, "/").concat(this.password)).then(function (res) {
         console.log(res);
-      });
-      uni.setStorageSync('id', this.userid);
-      uni.setStorageSync('password', this.password);
-      this.$Router.pushTab({
-        path: "/pages/home/home"
+        if (res.data.stauts == 'success') {
+          uni.setStorageSync('id', _this.userid);
+          uni.setStorageSync('password', _this.password);
+          uni.setStorageSync('token', res.data.token);
+          that.showTost({
+            'message': '登录成功!',
+            'duration': 1000,
+            // 加载1s
+            // 'loading': true,
+            'position': 'bottom',
+            'type': 'success',
+            complete: function complete() {
+              that.$Router.pushTab({
+                path: "/pages/home/home"
+              });
+            }
+          });
+        } else if (res.data.error == 'password is wrong') {
+          that.showTost({
+            'message': '密码错误!',
+            'duration': 1000,
+            // 加载1s
+            'position': 'bottom',
+            'type': 'error',
+            complete: function complete() {
+              that.userid = '';
+              that.password = '';
+            }
+          });
+        } else {
+          that.showTost({
+            'message': '用户名不存在!',
+            'duration': 1000,
+            // 加载1s
+            'position': 'bottom',
+            'type': 'error',
+            complete: function complete() {
+              that.userid = '';
+              that.password = '';
+            }
+          });
+        }
+      }).catch(function (err) {
+        console.log(err);
       });
     },
     getToRegister: function getToRegister() {
