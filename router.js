@@ -25,15 +25,15 @@ router.beforeEach((to, from, next) => {
 			});
 		}
 
-	} else if (to.name == 'register' || to.name=='index') {
-			if(uni.getStorageSync('token')){
-				next({
-					name: 'home',
-					NAVTYPE: 'pushTab'
-				});
-			}else{
-				next()
-			}
+	} else if (to.name == 'register' || to.name == 'index') {
+		if (uni.getStorageSync('token')) {
+			next({
+				name: 'home',
+				NAVTYPE: 'pushTab'
+			});
+		} else {
+			next()
+		}
 	} else {
 		next()
 	}

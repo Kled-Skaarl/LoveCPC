@@ -3,6 +3,8 @@
   "navigationStyle": "custom",
   "enablePullDownRefresh": false,
   "usingComponents": {
+    "u-icon": "/node-modules/uview-ui/components/u-icon/u-icon",
+    "u-toast": "/node-modules/uview-ui/components/u-toast/u-toast",
     "mp-html": "/node-modules/mp-html/dist/uni-app/components/mp-html/mp-html"
   }
 }

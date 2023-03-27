@@ -1,13 +1,13 @@
 <template>
 	<view>
 		<view class="background">
-			<image src="@/static/img/home/bgimg1.png" alt="">
-				<image src="@/static/img/home/bgimg2.png" alt="" id="bgimg2">
+			<image src="https://bj.bcebos.com/szbwg/lovecp/img/home/bgimg1.png" alt="">
+				<image src="https://bj.bcebos.com/szbwg/lovecp/img/home/bgimg2.png" alt="" id="bgimg2">
 					<view class="top-text">
-						<image src="../../static/img/home/redflag.png" alt="" id="redflag">
+						<image src="https://bj.bcebos.com/szbwg/lovecp/img/home/redflag.png" alt="" id="redflag">
 							<view class="text">
-								<image src="@/static/img/home/loveCPC.png" alt="" id="loveCPC">
-									<image src="@/static/img/home/sss.png" alt="" id="lovelearn">
+								<image src="https://bj.bcebos.com/szbwg/lovecp/img/home/loveCPC.png" alt="" id="loveCPC">
+									<image src="https://bj.bcebos.com/szbwg/lovecp/img/home/sss.png" alt="" id="lovelearn">
 							</view>
 
 					</view>
@@ -94,8 +94,6 @@
 </template>
 
 <script>
-	import TagsNameHelper from '@/utils/TagsNameHelper.js'
-	import jsonData from '@/static/json/video.json'
 	export default {
 		data() {
 			return {
@@ -103,30 +101,30 @@
 				videoData: [], //存储视频数据
 				// 轮播图片url
 				swapList: [
-					'https://fs.591iq.cn/group1/M00/4F/45/rBKYP2QCws-ABAMqAABn4XzDof8943.jpg',
-					'https://fs.591iq.cn/group1/M00/4F/45/rBKYP2QCws-ABAMqAABn4XzDof8943.jpg',
-					'https://fs.591iq.cn/group1/M00/4F/45/rBKYP2QCws-ABAMqAABn4XzDof8943.jpg',
+					'https://bj.bcebos.com/szbwg/lovecp/img/banner/swap1.png',
+					'https://bj.bcebos.com/szbwg/lovecp/img/banner/swap2.png',
+					'https://bj.bcebos.com/szbwg/lovecp/img/banner/swap3.png',
 					// '../../static/img/home/swap.png',
 					// '../../static/img/home/swap.png'
 				],
 				// 学习链接data
 				linkData: [{
-						img: '../../static/img/home/www.12371.cn.png',
+						img: 'https://bj.bcebos.com/szbwg/lovecp/img/home/www.12371.cn.png',
 						title: '共产党员网',
 						link: 'https://www.12371.cn/'
 					},
 					{
-						img: '../../static/img/home/www.people.com.cn.png',
+						img: 'https://bj.bcebos.com/szbwg/lovecp/img/home/www.people.com.cn.png',
 						title: '人民网',
 						link: 'http://www.people.com.cn/'
 					},
 					{
-						img: '../../static/img/home/cpc.people.com.cn.png',
+						img: 'https://bj.bcebos.com/szbwg/lovecp/img/home/cpc.people.com.cn.png',
 						title: '中国共产党新闻网',
 						link: 'http://cpc.people.com.cn/'
 					},
 					{
-						img: '../../static/img/home/www.xuexi.cn.png',
+						img: 'https://bj.bcebos.com/szbwg/lovecp/img/home/www.xuexi.cn.png',
 						title: '学习强国网',
 						link: 'https://www.xuexi.cn/'
 					}
@@ -139,27 +137,33 @@
 		},
 		onLoad() {
 			// 获取视频数据
-			this.videoData = jsonData.slice(0, 100);
-			for (let i in this.videoData) {
-				var tempvideoData = {
-					img: '',
-					title: '',
-					source: '',
-					id: ''
+			uni.request({
+				url:`https://bj.bcebos.com/szbwg/lovecp/video.json`,
+				method:'GET',
+				success:(res)=>{
+					this.videoData=res.data.slice(0,100)
+					for (let i in this.videoData) {
+						var tempvideoData = {
+							img: '',
+							title: '',
+							source: '',
+							id: ''
+						}
+						tempvideoData.img = this.videoData[i].cover
+						tempvideoData.title = this.videoData[i].title
+						tempvideoData.source = this.videoData[i].from
+						tempvideoData.id = this.videoData[i].id
+						this.hotpotData.push(tempvideoData)
+					}
 				}
-				tempvideoData.img = this.videoData[i].cover
-				tempvideoData.title = this.videoData[i].title
-				tempvideoData.source = this.videoData[i].from
-				tempvideoData.id = this.videoData[i].id
-				this.hotpotData.push(tempvideoData)
-			}
-			// console.log("this.hotpotData")
-			// console.log(this.hotpotData);
+			})
+			console.log(this.videoData);
+
 			// 请求所有数据
 			this.$get('/posts').then(res => {
 
-				this.allData = TagsNameHelper(res.data);
-				console.log(this.allData);
+				// this.allData = TagsNameHelper(res.data);
+				// console.log(this.allData);
 				for (var i = 0; i < this.allData.length; i++) {
 					var tempcurrentaffairsData = {
 						title: '',

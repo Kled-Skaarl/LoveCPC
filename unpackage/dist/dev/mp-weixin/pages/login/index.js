@@ -101,7 +101,7 @@ var components
 try {
   components = {
     uToast: function () {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-toast/u-toast */ "node-modules/uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! uview-ui/components/u-toast/u-toast.vue */ 260))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-toast/u-toast */ "node-modules/uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! uview-ui/components/u-toast/u-toast.vue */ 256))
     },
   }
 } catch (e) {
@@ -183,10 +183,22 @@ var _default = {
     },
     logIn: function logIn() {
       var _this = this;
+      if (this.userid == '' || this.password == '') {
+        this.showTost({
+          'message': '请输入账号和密码!',
+          'duration': 1000,
+          // 加载1s
+          // 'loading': true,
+          'position': 'bottom',
+          'type': 'error',
+          complete: function complete() {}
+        });
+        return;
+      }
       var that = this;
       this.$get(":5000/login/".concat(this.userid, "/").concat(this.password)).then(function (res) {
         console.log(res);
-        if (res.data.stauts == 'success') {
+        if (res.data.status == 'success') {
           uni.setStorageSync('id', _this.userid);
           uni.setStorageSync('password', _this.password);
           uni.setStorageSync('token', res.data.token);
@@ -217,7 +229,7 @@ var _default = {
           });
         } else {
           that.showTost({
-            'message': '用户名不存在!',
+            'message': '账号不存在!',
             'duration': 1000,
             // 加载1s
             'position': 'bottom',

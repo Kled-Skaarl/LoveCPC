@@ -1,6 +1,9 @@
 {
   "navigationBarTitleText": "爱学党史",
   "navigationStyle": "custom",
-  "enablePullDownRefresh": false,
-  "usingComponents": {}
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "u-toast": "/node-modules/uview-ui/components/u-toast/u-toast",
+    "j-calendar": "/components/calendar/j-calendar"
+  }
 }

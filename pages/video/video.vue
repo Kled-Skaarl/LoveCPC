@@ -5,10 +5,10 @@
 		</view>
 		<view class="top-text">
 			<image src="@/static/img/home/redflag.png" alt="" id="redflag">
-			<view class="text">
-				<image src="@/static/img/video/topimg1.png" alt="" id="topimg1">
-				<image src="@/static/img/video/GLORIOUS JOURNEY OF CPC.png" alt="" id="GJcpc">
-			</view>
+				<view class="text">
+					<image src="@/static/img/video/topimg1.png" alt="" id="topimg1">
+						<image src="@/static/img/video/GLORIOUS JOURNEY OF CPC.png" alt="" id="GJcpc">
+				</view>
 		</view>
 
 		<!-- 搜索框 -->
@@ -53,9 +53,9 @@
 			</view>
 
 			<view class="body">
-				<view class="videoItem" v-for="(item,index) in sliceVideoList[currentpage-1].slice(0,2)"
+				<view class="videoItem" v-for="(item,index) in this.all_videoData.slice(0,2)"
 					@click="handletoVideoPlay(item.title)">
-					<img :src="item.img" alt="">
+					<img :src="item.cover" alt="">
 					<view class="littleTitle">
 						<text>{{item.title}}</text>
 						<i class="iconfont icon-bofang"></i>
@@ -63,9 +63,9 @@
 				</view>
 			</view>
 			<view class="body">
-				<view class="videoItem" v-for="(item,index) in sliceVideoList[currentpage-1].slice(2,4)"
+				<view class="videoItem" v-for="(item,index) in this.all_videoData.slice(2,4)"
 					@click="handletoVideoPlay(item.title)">
-					<img :src="item.img" alt="">
+					<img :src="item.cover" alt="">
 					<view class="littleTitle">
 						<text>{{item.title}}</text>
 						<i class="iconfont icon-bofang"></i>
@@ -74,17 +74,17 @@
 				</view>
 			</view>
 			<!-- 分页功能 -->
-			<view class="bottom">
+<!-- 			<view class="bottom">
 				<uni-pagination :show-icon="true" :total="videoList.length" :current="currentpage" pageSize=4
 					@change="handleChangePage" />
-			</view>
+			</view> -->
 		</view>
 	</view>
 
 </template>
 
 <script>
-	import jsonData from '@/static/json/video.json'
+	// import jsonData from '@/static/json/video.json'
 	export default {
 		data() {
 			return {
@@ -135,19 +135,29 @@
 			}
 		},
 		onLoad() {
-			this.all_videoData=jsonData.slice(0,30)
-			console.log(this.all_videoData);
-			for(let i in this.all_videoData){
-				var tempData={
-					img:'',
-					title:'',
-					id:0
+			uni.request({
+				url: `https://bj.bcebos.com/szbwg/lovecp/video.json`,
+				method: 'GET',
+				success: (res) => {
+					// res=JSON.parse(res)
+					// console.log(typeof(res))
+					// console.log(typeof([1,2,3]))
+					this.all_videoData = res.data.slice(0, 30)
+					this.all_videoData=Array.from(this.all_videoData)
+					for (let i in this.all_videoData) {
+						var tempData = {
+							img: '',
+							title: '',
+							id: 0
+						}
+						tempData.img = this.all_videoData[i].cover
+						tempData.title = this.all_videoData[i].title
+						tempData.id = this.all_videoData[i].id
+						this.videoList.push(tempData)
+					}
 				}
-				tempData.img=this.all_videoData[i].cover
-				tempData.title=this.all_videoData[i].title
-				tempData.id=this.all_videoData[i].id
-				this.videoList.push(tempData)
-			}
+			})
+
 		},
 		computed: {
 			sliceVideoList() {
@@ -172,29 +182,30 @@
 				console.log(id);
 			},
 			//跳转至视频详情页
-			handletoVideoDetail(){
+			handletoVideoDetail() {
 				uni.navigateTo({
-					url:'./videoDetail'
+					url: './videoDetail'
 				})
 			},
 			//分页功能
 			handleChangePage(e) {
-				// console.log(e);
+				console.log(e);
 				this.currentpage = e.current
-				// console.log(this.currentpage);
-				// console.log(this.sliceVideoList);
 			},
 			//跳转至视频播放页
 			handletoVideoPlay(itm) {
-				// console.log(id);
-				uni.navigateTo({
-					url: './videoPlay?title=' + itm
+				console.log(itm)
+				this.$Router.push({
+					path: '/pages/video/videoPlay',
+					query: {
+						'title': itm
+					}
 				})
-			},
+			}
 		}
 	}
 </script>
 
 <style lang="scss">
-@import "./video.scss"
+	@import "./video.scss"
 </style>

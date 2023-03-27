@@ -37,11 +37,12 @@
 	</view>
 </template>
 <script>
-	import jsonData from '@/static/json/video.json'
+	// import jsonData from '@/static/json/video.json'
 
 	export default {
 		data() {
 			return {
+				jsonData:[],
 				all_videoData: [],
 				page_videoData: [],
 				list: [],
@@ -50,17 +51,24 @@
 			}
 		},
 		onLoad() {
-			this.list = []
-			this.all_videoData = jsonData
-			this.page_videoData = this.all_videoData.slice(0, 10)
-			for (var i = 0; i < this.page_videoData.length; i++) {
-				var obj = {}
-				obj.image = this.page_videoData[i].cover
-				obj.title = this.page_videoData[i].title
-				obj.desc = this.page_videoData[i].cat
-				this.list.push(obj)
-			}
-			// console.log(this.list);
+			uni.request({
+				url: `https://bj.bcebos.com/szbwg/lovecp/video.json`,
+				method: 'GET',
+				success: (res) => {
+					this.list = []
+					this.all_videoData = res.data
+					this.jsonData=res.data
+					this.page_videoData = this.all_videoData.slice(0, 10)
+					for (var i = 0; i < this.page_videoData.length; i++) {
+						var obj = {}
+						obj.image = this.page_videoData[i].cover
+						obj.title = this.page_videoData[i].title
+						obj.desc = this.page_videoData[i].cat
+						this.list.push(obj)
+					}
+
+				}
+			})
 		},
 		computed: {},
 		methods: {
@@ -92,7 +100,7 @@
 		onReachBottom() {
 			if (this.searchFlag === false) {
 				this.reachBottomIndex += 1
-				this.page_videoData = jsonData.slice(this.reachBottomIndex * 10, (this.reachBottomIndex + 1) * 10)
+				this.page_videoData = this.jsonData.slice(this.reachBottomIndex * 10, (this.reachBottomIndex + 1) * 10)
 				for (var i = 0; i < this.page_videoData.length; i++) {
 					var obj = {}
 					obj.image = this.page_videoData[i].cover

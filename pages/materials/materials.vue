@@ -2,11 +2,11 @@
 	<view class="page">
 		<view class="page-header">
 			<view class="top-img1">
-				<image src="../../static/img/home/redflag.png" alt="" style="width: 100vw;height: 320rpx;">
+				<image src="https://bj.bcebos.com/szbwg/lovecp/img/home/redflag.png" alt="" style="width: 100vw;height: 320rpx;">
 			</view>
 			<view class="top-img2">
-				<image src="@/static/img/home/loveCPC.png" alt="" style="width: 328rpx; height: 148rpx;">
-					<image src="@/static/img/home/sss.png" alt="" style="width: 444rpx; height: 48rpx;">
+				<image src="https://bj.bcebos.com/szbwg/lovecp/img/home/loveCPC.png" alt="" style="width: 328rpx; height: 148rpx;">
+					<image src="https://bj.bcebos.com/szbwg/lovecp/img/home/sss.png" alt="" style="width: 444rpx; height: 48rpx;">
 			</view>
 			<view class="search">
 				<search all_videoData="tags"></search>
@@ -21,9 +21,9 @@
 </template>
 
 <script>
-	import {
-		tags
-	} from '../../static/json/zbp1_post_tag.js'
+	// import {
+	// 	tags
+	// } from '../../static/json/zbp1_post_tag.js'
 	import {
 		TagsNameHelper
 	} from '../../utils/TagsNameHelper.js'
@@ -158,7 +158,21 @@
 			};
 		},
 		beforeMount() {
-			this.cardList = TagsNameHelper(tags);
+			uni.request({
+				url: 'https://bj.bcebos.com/szbwg/lovecp/cs_new.js',
+				
+				success: (res) => {
+					// console.log(res.data,'ssssssssss');
+					// var a = eval('(' + JSON.parse(res.data) + ')')
+					// console.log( a ,'ssssssssss');
+					this.cardList = TagsNameHelper(res.data)
+					
+				},
+				fail: (err) => {
+					reject(res)
+				}
+			})
+			// this.cardList = TagsNameHelper(tags);
 			console.log(this.cardList)
 		}
 	}

@@ -2,8 +2,8 @@
 	<view>
 		<view class="page-header">
 			<view class="top-img2">
-				<img src="@/static/img/home/loveCPC.png" alt="">
-				<img src="@/static/img/home/sss.png" alt="">
+				<img src="https://bj.bcebos.com/szbwg/lovecp/img/home/loveCPC.png" alt="">
+				<img src="https://bj.bcebos.com/szbwg/lovecp/img/home/sss.png" alt="">
 			</view>
 			<view class="search">
 				<search></search>
@@ -59,9 +59,9 @@
 </template>
 
 <script>
-	import {
-		tags
-	} from '../../static/json/zbp1_post_tag.js'
+	// import {
+	// 	tags
+	// } from '../../static/json/zbp1_post_tag.js'
 	import {
 		findArticleById
 	} from '../../utils/TagsNameHelper.js'
@@ -184,7 +184,22 @@
 			this.id = options.id
 		},
 		beforeMount() {
-			this.originalData = findArticleById(tags, +this.id)
+			uni.request({
+				url: 'https://bj.bcebos.com/szbwg/lovecp/cs_new.js',
+				
+				success: (res) => {
+					console.log(res.data,this,'ssssssssss');
+					// var a = eval('(' + JSON.parse(res.data) + ')')
+					// console.log( a ,'ssssssssss');
+					// this.cardList = TagsNameHelper(res.data)
+					this.originalData = findArticleById(res.data, +this.id)
+					
+				},
+				fail: (err) => {
+					reject(res)
+				}
+			})
+			// this.originalData = findArticleById(tags, +this.id)
 			console.log(this.originalData);
 		},
 		methods: {

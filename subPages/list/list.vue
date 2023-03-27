@@ -24,9 +24,9 @@
 </template>
 
 <script>
-	import {
-		tags
-	} from '../../static/json/zbp1_post_tag.js'
+	// import {
+	// 	tags
+	// } from '../../static/json/zbp1_post_tag.js'
 	import {
 		TagsNameHelper
 	} from '../../utils/TagsNameHelper.js'
@@ -47,7 +47,22 @@
 			this.tagType = option.tagType || 0
 		},
 		beforeMount() {
-			this.curData = TagsNameHelper(tags)[this.tagType]
+			uni.request({
+				url: 'https://bj.bcebos.com/szbwg/lovecp/cs_new.js',
+				
+				success: (res) => {
+					// console.log(res.data,'ssssssssss');
+					// var a = eval('(' + JSON.parse(res.data) + ')')
+					// console.log( a ,'ssssssssss');
+					// this.cardList = TagsNameHelper(res.data)
+						this.curData = TagsNameHelper(res.data)[this.tagType]
+					
+				},
+				fail: (err) => {
+					reject(res)
+				}
+			})
+			// this.curData = TagsNameHelper(tags)[this.tagType]
 			console.log(this.tagType, this.curData)
 
 		}

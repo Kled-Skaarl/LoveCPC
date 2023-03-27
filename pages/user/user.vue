@@ -1,11 +1,12 @@
 <template>
 	<!-- index.wxml -->
 	<view class="page">
-		<image class="page-bg" src="/static/img/user/static/bg.png"></image>
+		<image class="page-bg" src="https://bj.bcebos.com/szbwg/lovecp/img/user/static/bg.png"></image>
 		<view class="content">
 			<view class="page-head">
-				<image class="head-logo" src="/static/img/user/static/logo.png"></image>
-				<image class="head-alphabet" src="/static/img/user/static/alphabet.png"></image>
+				<image class="head-logo" src="https://bj.bcebos.com/szbwg/lovecp/img/user/static/logo.png"></image>
+				<image class="head-alphabet" src="https://bj.bcebos.com/szbwg/lovecp/img/user/static/alphabet.png">
+				</image>
 			</view>
 			<view class="page-Heads">
 				<image :src="userinfo.heads"></image>
@@ -13,65 +14,30 @@
 			<view class="info">
 				<view class="info-one">
 					<view class="info-name">
-						<text class="fz-24">正式党员</text>
 						<text class="name">{{ userinfo.name }}</text>
 					</view>
-					<view class="info-sj">
-						<view>
-							<text class="sj">
-								{{ userinfo.StartTime }}
-								<text style="color: #eee">入党</text>
-							</text>
-						</view>
-						<view>
-							<text class="sj">
-								{{ userinfo.LengthTime }}
-								<text style="color: #eee">党龄</text>
-							</text>
-						</view>
-					</view>
 				</view>
-				<image class="Segmentation" src="/static/img/user/static/Segmentation.png"></image>
-				<view class="info-tow">
-					<text class="fz-24">所属支部</text>
-					<text class="cont">中国传媒大学计算机与空间安全学院党委</text>
-				</view>
+				<image class="Segmentation" src="https://bj.bcebos.com/szbwg/lovecp/img/user/static/Segmentation.png">
+				</image>
 				<view class="info-list">
 					<view v-for="(item, index) in userinfo.list" :key="index">
-						<image src="/static/img/user/static/box.png"></image>
+						<image src="https://bj.bcebos.com/szbwg/lovecp/img/user/static/box.png"></image>
+						<view class="info">
+							<view class="number">{{ item.number }}</view>
 
-						<view class="number">{{ item.number }}</view>
-
-						<view class="title">{{ item.title }}</view>
-					</view>
-				</view>
-				<view class="Calendar">
-					<view>
-						<view class="line"></view>
-					</view>
-					<view class="circle-list">
-						<view v-for="(item, index) in userinfo.Calendar" :key="index">
-							<view :class="item.check == true ? 'circle-true' : 'circle'">{{ item.name }}</view>
-
-							<view class="title">{{ item.sj }}</view>
+							<view class="title">{{ item.title }}</view>
 						</view>
+
 					</view>
 				</view>
-				<view class="date">
-					<image src="/static/img/user/static/date.png"></image>
-				</view>
+				<JCalendar :yearMonth="targetDate" :dataSource="signData" @dateChange="refeshSignData($event)"
+					@clickChange="updateSign($event)">
+				</JCalendar>
+				<!-- 消息提示 -->
+				<u-toast ref="uToast"></u-toast>
+
 				<view class="btn-info">
-					<view>
-						<text>累计签到：</text>
-						<text class="num">42</text>
-						<text>天</text>
-					</view>
 					<view class="btn" @click="logOut()">退出登录</view>
-					<view>
-						<text>当前积分：</text>
-						<text class="num">219.5</text>
-						<text>分</text>
-					</view>
 				</view>
 			</view>
 		</view>
@@ -79,24 +45,26 @@
 </template>
 
 <script>
-	// index.js
-	// 获取应用实例
+	// 引入日历组件
+	import JCalendar from '@/components/calendar/j-calendar.vue'
 	const app = getApp();
 	export default {
+		components: {
+			JCalendar
+		},
 		data() {
 			return {
+				targetDate: `${parseInt(new Date().getFullYear())}-${parseInt(new Date().getMonth() + 1)}`,
+				signData: [],
+				collectnum: 0,
 				userinfo: {
-					heads: '/static/img/user/static/heads.png',
+					heads: 'https://bj.bcebos.com/szbwg/lovecp/img/user/static/heads.png',
 					name: '谢 彪 悍',
 					StartTime: '2009-06-20',
 					LengthTime: '11年11个月',
 					list: [{
-							title: '我的关注',
+							title: '学习评分',
 							number: '365'
-						},
-						{
-							title: '我的粉丝',
-							number: '7'
 						},
 						{
 							title: '我的浏览',
@@ -104,12 +72,8 @@
 						},
 						{
 							title: '我的收藏',
-							number: '100'
+							number: '0'
 						},
-						{
-							title: '我的心得',
-							number: '69'
-						}
 					],
 					Calendar: [{
 							name: '壹',
@@ -150,20 +114,163 @@
 				}
 			};
 		},
-		onLoad() {},
+		onLoad() {
+			this.getCheckInStatus()
+			this.getCollectNum()
+			this.getViews()
+			this.getScores()
+			this.getUserInfo()
+		},
+		onPullDownRefresh() {
+			var that=this
+			setTimeout(function() {
+				that.getCheckInStatus()
+				that.getCollectNum()
+				that.getViews()
+				that.getScores()
+				that.getUserInfo()
+				uni.stopPullDownRefresh();
+			}, 1000);
+		},
 		methods: {
+			showTost(params) {
+				this.$refs.uToast.show({
+					...params
+				})
+			},
+			// 获取签到状态
+			getCheckInStatus() {
+				uni.request({
+					url: `http://43.140.204.55:5000/check_in/statistics`,
+					header: {
+						'Authorization': `Bearer ${uni.getStorageSync('token')}`
+					},
+					method: 'GET',
+					success: (res) => {
+						this.signData = res.data.check_in_date
+					},
+				})
+			},
+			// 获取学习分数
+			getScores() {
+				uni.request({
+					url: `http://43.140.204.55:5000/score`,
+					header: {
+						'Authorization': `Bearer ${uni.getStorageSync('token')}`
+					},
+					method: 'GET',
+					success: (res) => {
+						console.log(res)
+						this.userinfo.list[0].number = res.data.score
+						// this.userinfo.list[2].number=res.data.pageviews
+					},
+				})
+			},
+			// 获取用户信息
+			getUserInfo() {
+				uni.request({
+					url: `http://43.140.204.55:5000/me`,
+					header: {
+						'Authorization': `Bearer ${uni.getStorageSync('token')}`
+					},
+					method: 'GET',
+					success: (res) => {
+						this.userinfo.name = res.data.user.username
+					},
+				})
+			},
+			// 获取浏览量
+			getViews() {
+				uni.request({
+					url: `http://43.140.204.55:5000/pageviews`,
+					header: {
+						'Authorization': `Bearer ${uni.getStorageSync('token')}`
+					},
+					method: 'GET',
+					success: (res) => {
+						this.userinfo.list[1].number = res.data.pageviews
+					},
+				})
+			},
+			// 获取收藏数量
+			getCollectNum() {
+				uni.request({
+					url: `http://43.140.204.55:5000/my_collection`,
+					header: {
+						'Authorization': `Bearer ${uni.getStorageSync('token')}`
+					},
+					method: 'GET',
+					success: (res) => {
+						console.log(res);
+						res.data.collections = Array.from(new Set(res.data.collections))
+						this.userinfo.list[2].number = res.data.collections.length
+					},
+				})
+			},
+			// 签到
+			updateSign(obj) {
+				var that = this
+				uni.request({
+					url: `http://43.140.204.55:5000/check_in`,
+					header: {
+						'Authorization': `Bearer ${uni.getStorageSync('token')}`
+					},
+					method: 'GET',
+					success: (res) => {
+						this.getCheckInStatus()
+						if (res.data.status == 'success') {
+							that.showTost({
+								'message': '签到成功!',
+								'duration': 2000, // 加载1s
+								'position': 'bottom',
+								'type': 'success',
+								complete() {
+
+								}
+							})
+						} else if (res.data.status == 'fail' && res.data.error == 'already checked in') {
+							that.showTost({
+								'message': '请勿重复签到!',
+								'duration': 2000, // 加载1s
+								'position': 'bottom',
+								'type': 'false',
+								complete() {
+
+								}
+							})
+						} else {
+							that.showTost({
+								'message': '状态错误!',
+								'duration': 2000, // 加载1s
+								'position': 'bottom',
+								'type': 'false',
+								complete() {
+
+								}
+							})
+						}
+					}
+				})
+			},
+			// 更新日历月份
+			refeshSignData(obj) {
+				this.getCheckInStatus()
+			},
 			// 退出登录
 			logOut() {
 				uni.removeStorageSync('id');
 				uni.removeStorageSync('password');
-				var that=this
+				var that = this
 				uni.removeStorage({
 					key: 'token',
-					success: function (res) {
+					success: function(res) {
 						// console.log('success');
-						that.$Router.push({
-							path: "/pages/login/index"
+						uni.reLaunch({
+							url: "/pages/login/index"
 						})
+						// that.$Router.push({
+						// 	path: "/pages/login/index"
+						// })
 					}
 				});
 			}

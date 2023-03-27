@@ -41,7 +41,7 @@
         "pagePath": "pages/materials/materials",
         "iconPath": "static/img/materials.png",
         "selectedIconPath": "static/img/materials-active.png",
-        "text": "党媒咨询"
+        "text": "党媒资讯"
       },
       {
         "pagePath": "pages/video/video",

@@ -2,12 +2,12 @@
 	<view id="app" class="box">
 		<!-- 背景图 -->
 		<view class="backGroundImg">
-			<image src="../../static/img/login/images/bj.jpg" mode=""></image>
-			<image src="../../static/img/login/images/loveCPC.png" mode="" class='loveCPC'></image>
+			<image src="https://bj.bcebos.com/szbwg/lovecp/img/login/images/bj.jpg" mode=""></image>
+			<image src="https://bj.bcebos.com/szbwg/lovecp/img/login/images/loveCPC.png" mode="" class='loveCPC'></image>
 		</view>
 		<!-- 登录卡片 -->
 		<view class="card">
-			<image src="../../static/img/login/images/bot3.png" mode="" id="logo"></image>
+			<image src="https://bj.bcebos.com/szbwg/lovecp/img/login/images/bot3.png" mode="" id="logo"></image>
 			<view class="form">
 				<view class="input-id">
 					<p style="display: inline-block;">账号：</p>
@@ -61,7 +61,7 @@
 				var that = this
 				this.$get(`:5000/login/${this.userid}/${this.password}`).then((res) => {
 					console.log(res);
-					if (res.data.stauts == 'success') {
+					if (res.data.status == 'success') {
 						uni.setStorageSync('id', this.userid)
 						uni.setStorageSync('password', this.password)
 						uni.setStorageSync('token', res.data.token)
