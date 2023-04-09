@@ -167,7 +167,7 @@
 			// 请求所有数据
 			this.$get('/posts').then(res => {
 
-				// this.allData = TagsNameHelper(res.data);
+				this.allData = res.data
 				// console.log(this.allData);
 				for (var i = 0; i < this.allData.length; i++) {
 					var tempcurrentaffairsData = {

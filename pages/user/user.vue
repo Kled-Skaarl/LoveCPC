@@ -9,7 +9,7 @@
 				</image>
 			</view>
 			<view class="page-Heads" @click="changeAvatar()">
-				<image :src="userinfo.heads"></image>
+				<image :src="avatarUrl" v-if='avatarshow' style="border-radius: 50%;"></image>
 			</view>
 			<!-- 遮罩 -->
 			<zero-loading v-if="loading" :mask='true'></zero-loading>
@@ -58,7 +58,9 @@
 			return {
 				targetDate: `${parseInt(new Date().getFullYear())}-${parseInt(new Date().getMonth() + 1)}`,
 				signData: [],
+				avatarshow:true,
 				loading: true,
+				avatarUrl:'',
 				collectnum: 0,
 				userinfo: {
 					heads: 'https://bj.bcebos.com/szbwg/lovecp/img/user/static/heads.png',
@@ -123,6 +125,7 @@
 			this.getViews()
 			this.getScores()
 			this.getUserInfo()
+			// this.getAvatar()
 		},
 		onPullDownRefresh() {
 			var that = this
@@ -138,7 +141,8 @@
 		mounted() {
 			setTimeout(() => {
 				this.loading = false
-			}, 2000)
+			}, 2000),
+			this.avatarUrl=`http://43.140.204.55:5000/avatars/${uni.getStorageSync('token')}`
 
 		},
 		methods: {
@@ -161,18 +165,40 @@
 							filePath: tempFilePaths[0],
 							name: 'avatar',
 							formData: {
-								'key': 'avatar',
+								// 'key': 'avatar',
 							},
 							header: {
 								'Authorization': `Bearer ${uni.getStorageSync('token')}`
 							},
 							success: (uploadRes) => {
 								console.log(uploadRes.data)
+								// 获取当前页面路径
+								const currentPage = getCurrentPages()[0].route;
+								
+								// 关闭当前页面并重新打开
+								uni.reLaunch({
+								  url: `/${currentPage}`
+								});
+
 							}
 						})
 					}
 				});
 			},
+			// // 获取头像
+			// getAvatar(){
+			// 	uni.request({
+			// 		url: `http://43.140.204.55:5000/avatar/${uni.getStorageSync('token')}`,
+			// 		// header: {
+			// 		// 	'Authorization': `Bearer ${uni.getStorageSync('token')}`
+			// 		// },
+			// 		method: 'GET',
+			// 		success: (res) => {
+			// 			console.log(res.data);
+			// 			// this.userinfo.heads=url;
+			// 		},
+			// 	})
+			// },
 			// 获取签到状态
 			getCheckInStatus() {
 				uni.request({
