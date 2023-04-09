@@ -4,6 +4,7 @@
   "enablePullDownRefresh": false,
   "usingComponents": {
     "search": "/components/search/search",
+    "zero-loading": "/uni_modules/zero-loading/components/zero-loading/zero-loading",
     "card": "/components/card/card"
   }
 }

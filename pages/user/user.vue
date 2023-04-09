@@ -8,9 +8,11 @@
 				<image class="head-alphabet" src="https://bj.bcebos.com/szbwg/lovecp/img/user/static/alphabet.png">
 				</image>
 			</view>
-			<view class="page-Heads">
+			<view class="page-Heads" @click="changeAvatar()">
 				<image :src="userinfo.heads"></image>
 			</view>
+			<!-- 遮罩 -->
+			<zero-loading v-if="loading" :mask='true'></zero-loading>
 			<view class="info">
 				<view class="info-one">
 					<view class="info-name">
@@ -56,6 +58,7 @@
 			return {
 				targetDate: `${parseInt(new Date().getFullYear())}-${parseInt(new Date().getMonth() + 1)}`,
 				signData: [],
+				loading: true,
 				collectnum: 0,
 				userinfo: {
 					heads: 'https://bj.bcebos.com/szbwg/lovecp/img/user/static/heads.png',
@@ -122,7 +125,7 @@
 			this.getUserInfo()
 		},
 		onPullDownRefresh() {
-			var that=this
+			var that = this
 			setTimeout(function() {
 				that.getCheckInStatus()
 				that.getCollectNum()
@@ -132,11 +135,43 @@
 				uni.stopPullDownRefresh();
 			}, 1000);
 		},
+		mounted() {
+			setTimeout(() => {
+				this.loading = false
+			}, 2000)
+
+		},
 		methods: {
 			showTost(params) {
 				this.$refs.uToast.show({
 					...params
 				})
+			},
+			// 上传头像
+			changeAvatar() {
+				uni.chooseImage({
+					count: 1, //默认9
+					sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+					sourceType: ['album'], //从相册选择
+					success: function(res) {
+						console.log(JSON.stringify(res.tempFilePaths));
+						const tempFilePaths = res.tempFilePaths
+						uni.uploadFile({
+							url: `http://43.140.204.55:5000/avatar/upload`,
+							filePath: tempFilePaths[0],
+							name: 'avatar',
+							formData: {
+								'key': 'avatar',
+							},
+							header: {
+								'Authorization': `Bearer ${uni.getStorageSync('token')}`
+							},
+							success: (uploadRes) => {
+								console.log(uploadRes.data)
+							}
+						})
+					}
+				});
 			},
 			// 获取签到状态
 			getCheckInStatus() {

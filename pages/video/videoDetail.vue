@@ -42,7 +42,8 @@
 	export default {
 		data() {
 			return {
-				jsonData:[],
+				tag:false,
+				jsonData: [],
 				all_videoData: [],
 				page_videoData: [],
 				list: [],
@@ -50,25 +51,53 @@
 				searchFlag: false,
 			}
 		},
-		onLoad() {
-			uni.request({
-				url: `https://bj.bcebos.com/szbwg/lovecp/video.json`,
-				method: 'GET',
-				success: (res) => {
-					this.list = []
-					this.all_videoData = res.data
-					this.jsonData=res.data
-					this.page_videoData = this.all_videoData.slice(0, 10)
-					for (var i = 0; i < this.page_videoData.length; i++) {
-						var obj = {}
-						obj.image = this.page_videoData[i].cover
-						obj.title = this.page_videoData[i].title
-						obj.desc = this.page_videoData[i].cat
-						this.list.push(obj)
-					}
+		onLoad(obj) {
+			console.log(obj)
+			if (obj.title) {
+				this.tag=true
+				let tag = obj.title
+				uni.request({
+					url: `https://bj.bcebos.com/szbwg/lovecp/video.json`,
+					method: 'GET',
+					success: (res) => {
+						this.list = []
+						this.all_videoData = res.data
+						this.jsonData = res.data
+						this.page_videoData = this.all_videoData
+						for (var i = 0; i < this.page_videoData.length; i++) {
+							var obj = {}
+							if (this.page_videoData[i].cat == tag) {
+								obj.image = this.page_videoData[i].cover
+								obj.title = this.page_videoData[i].title
+								obj.desc = this.page_videoData[i].cat
+								this.list.push(obj)
+							}
 
-				}
-			})
+						}
+
+					}
+				})
+			} else {
+				uni.request({
+					url: `https://bj.bcebos.com/szbwg/lovecp/video.json`,
+					method: 'GET',
+					success: (res) => {
+						this.list = []
+						this.all_videoData = res.data
+						this.jsonData = res.data
+						this.page_videoData = this.all_videoData.slice(0, 10)
+						for (var i = 0; i < this.page_videoData.length; i++) {
+							var obj = {}
+							obj.image = this.page_videoData[i].cover
+							obj.title = this.page_videoData[i].title
+							obj.desc = this.page_videoData[i].cat
+							this.list.push(obj)
+						}
+
+					}
+				})
+			}
+
 		},
 		computed: {},
 		methods: {
@@ -98,7 +127,7 @@
 
 		},
 		onReachBottom() {
-			if (this.searchFlag === false) {
+			if (this.searchFlag === false&&!this.tag) {
 				this.reachBottomIndex += 1
 				this.page_videoData = this.jsonData.slice(this.reachBottomIndex * 10, (this.reachBottomIndex + 1) * 10)
 				for (var i = 0; i < this.page_videoData.length; i++) {

@@ -100,14 +100,17 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
+    zeroLoading: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/zero-loading/components/zero-loading/zero-loading */ "uni_modules/zero-loading/components/zero-loading/zero-loading").then(__webpack_require__.bind(null, /*! @/uni_modules/zero-loading/components/zero-loading/zero-loading.vue */ 263))
+    },
     uIcon: function () {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 291))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 285))
     },
     uToast: function () {
       return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-toast/u-toast */ "node-modules/uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! uview-ui/components/u-toast/u-toast.vue */ 256))
     },
     mpHtml: function () {
-      return Promise.all(/*! import() | uni_modules/mp-html/components/mp-html/mp-html */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/mp-html/components/mp-html/mp-html")]).then(__webpack_require__.bind(null, /*! @/uni_modules/mp-html/components/mp-html/mp-html.vue */ 300))
+      return Promise.all(/*! import() | uni_modules/mp-html/components/mp-html/mp-html */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/mp-html/components/mp-html/mp-html")]).then(__webpack_require__.bind(null, /*! @/uni_modules/mp-html/components/mp-html/mp-html.vue */ 294))
     },
   }
 } catch (e) {
@@ -176,7 +179,7 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var mpHtml = function mpHtml() {
   Promise.all(/*! require.ensure | node-modules/mp-html/dist/uni-app/components/mp-html/mp-html */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/mp-html/dist/uni-app/components/mp-html/mp-html")]).then((function () {
-    return resolve(__webpack_require__(/*! mp-html/dist/uni-app/components/mp-html/mp-html */ 308));
+    return resolve(__webpack_require__(/*! mp-html/dist/uni-app/components/mp-html/mp-html */ 302));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 // import jsonData from '@/static/json/video.json'
@@ -186,6 +189,7 @@ var _default = {
   },
   data: function data() {
     return {
+      loading: true,
       dp: {},
       title: '',
       collectFlag: false,
@@ -202,6 +206,8 @@ var _default = {
       videoData: {
         videoUrl: ''
       },
+      timer: null,
+      count: 0,
       htmlText: "<p>■&nbsp;&nbsp;党中央举办这次专题研讨班，目的是深入研读和领会党的十九届六中全会决议，继续把党史总结、学习、教育、宣传引向深入，更好把握和运用党的百年奋斗历史经验，弘扬伟大建党精神，增加历史自信、增进团结统一、增强斗争精神，动员全党全国各族人民坚定信心、勇毅前行，为实现第二个百年奋斗目标而不懈努力。一个民族要走在时代前列，就一刻不能没有理论思维，一刻不能没有正确思想指引。中国共产党为什么能，中国特色社会主义为什么好，归根到底是因为马克思主义行。马克思主义之所以行，就在于党不断推进马克思主义中国化时代化并用以指导实践。党的百年奋斗历程告诉我们，党和人民事业能不能沿着正确方向前进，取决于我们能否准确认识和把握社会主要矛盾、确定中心任务。什么时候社会主要矛盾和中心任务判断准确，党和人民事业就顺利发展，否则党和人民事业就会遭受挫折。战略问题是一个政党、一个国家的根本性问题。战略上判断得准确，战略上谋划得科学，战略上赢得主动，党和人民事业就大有希望。一百年来，党总是能够在重大历史关头从战略上认识、分析、判断面临的重大历史课题，制定正确的政治战略策略，这是党战胜无数风险挑战、不断从胜利走向胜利的有力保证。在百年奋斗历程中，党领导人民取得一个又一个伟大成就、战胜一个又一个艰难险阻，历经千锤百炼仍朝气蓬勃，得到人民群众支持和拥护，原因就在于党敢于直面自身存在的问题，勇于自我革命，始终保持先进性和纯洁性，不断增强创造力、凝聚力、战斗力，永葆马克思主义政党本色。</p>"
     };
   },
@@ -239,11 +245,29 @@ var _default = {
           }
         });
       }
+    }), this.timer = setInterval(function () {
+      _this.count++;
+      // console.log(`Count: ${this.count}`)
+    }, 1000);
+  },
+  beforeDestroy: function beforeDestroy() {
+    clearInterval(this.timer);
+    console.log(this.count);
+    uni.request({
+      url: "http://43.140.204.55:5000/online_time/add_seconds/".concat(this.count),
+      header: {
+        'Authorization': "Bearer ".concat(uni.getStorageSync('token'))
+      },
+      method: 'GET',
+      success: function success(res) {
+        console.log(res);
+      }
     });
   },
   mounted: function mounted() {
     // 在自定义组件下，第二个参数传入组件实例 this，以操作组件内 <video> 组件。
     this.videoContext = uni.createVideoContext("videoWrap", this);
+    this.loading = false;
   },
   methods: {
     showTost: function showTost(params) {

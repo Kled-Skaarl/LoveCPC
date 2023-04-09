@@ -9,13 +9,14 @@
 				</view>
 
 		</view>
-
+		<!-- 遮罩 -->
+		<zero-loading v-if="loading" :mask='true'></zero-loading>
 		<!-- // 视频播放组件 -->
 		<!-- #ifndef H5 -->
 		<view class="videoPlay">
-			<video class="video-wrap" :src="videoData.videoUrl" :controls="isControls"
-				:show-center-play-btn="false" object-fit="contain" :poster="videoData.imageUrl" :custom-cache="false"
-				show-mute-btn :muted="isMuted" @play="onStartPlay" @ended="handleEnded" @error="videoErrorCallback"
+			<video class="video-wrap" :src="videoData.videoUrl" :controls="isControls" :show-center-play-btn="false"
+				object-fit="contain" :poster="videoData.imageUrl" :custom-cache="false" show-mute-btn :muted="isMuted"
+				@play="onStartPlay" @ended="handleEnded" @error="videoErrorCallback"
 				@fullscreenchange="fullscreenchange"></video>
 
 			<!-- 控制按钮 - 播放 -->
@@ -59,7 +60,7 @@
 			</view>
 			<!-- 消息提示 -->
 			<u-toast ref="uToast"></u-toast>
-			
+
 			<view class="detail">
 				<view class="top-title">
 					<text>{{title}}</text>
@@ -85,6 +86,7 @@
 		},
 		data() {
 			return {
+				loading: true,
 				dp: {},
 				title: '',
 				collectFlag: false,
@@ -100,6 +102,8 @@
 				videoData: {
 					videoUrl: ''
 				},
+				timer: null,
+				count: 0,
 				htmlText: "<p>■&nbsp;&nbsp;党中央举办这次专题研讨班，目的是深入研读和领会党的十九届六中全会决议，继续把党史总结、学习、教育、宣传引向深入，更好把握和运用党的百年奋斗历史经验，弘扬伟大建党精神，增加历史自信、增进团结统一、增强斗争精神，动员全党全国各族人民坚定信心、勇毅前行，为实现第二个百年奋斗目标而不懈努力。一个民族要走在时代前列，就一刻不能没有理论思维，一刻不能没有正确思想指引。中国共产党为什么能，中国特色社会主义为什么好，归根到底是因为马克思主义行。马克思主义之所以行，就在于党不断推进马克思主义中国化时代化并用以指导实践。党的百年奋斗历程告诉我们，党和人民事业能不能沿着正确方向前进，取决于我们能否准确认识和把握社会主要矛盾、确定中心任务。什么时候社会主要矛盾和中心任务判断准确，党和人民事业就顺利发展，否则党和人民事业就会遭受挫折。战略问题是一个政党、一个国家的根本性问题。战略上判断得准确，战略上谋划得科学，战略上赢得主动，党和人民事业就大有希望。一百年来，党总是能够在重大历史关头从战略上认识、分析、判断面临的重大历史课题，制定正确的政治战略策略，这是党战胜无数风险挑战、不断从胜利走向胜利的有力保证。在百年奋斗历程中，党领导人民取得一个又一个伟大成就、战胜一个又一个艰难险阻，历经千锤百炼仍朝气蓬勃，得到人民群众支持和拥护，原因就在于党敢于直面自身存在的问题，勇于自我革命，始终保持先进性和纯洁性，不断增强创造力、凝聚力、战斗力，永葆马克思主义政党本色。</p>"
 			};
 		},
@@ -107,37 +111,55 @@
 			console.log(obj.title);
 			this.title = obj.title
 			uni.request({
-				url: `https://bj.bcebos.com/szbwg/lovecp/video.json`,
+					url: `https://bj.bcebos.com/szbwg/lovecp/video.json`,
+					method: 'GET',
+					success: (res) => {
+						this.all_videoData = res.data.slice(0, 100)
+						//在视频数据中找到对应的视频
+						for (var i = 0; i < this.all_videoData.length; i++) {
+							if (this.all_videoData[i].title == this.title) {
+								// console.log(this.all_videoData[i]);
+								this.videoData.videoUrl = this.all_videoData[i].m3u8
+								this.htmlText = this.all_videoData[i].text
+								this.id = this.all_videoData[i].id
+							}
+						}
+						uni.request({
+							url: `http://43.140.204.55:5000/my_collection`,
+							header: {
+								'Authorization': `Bearer ${uni.getStorageSync('token')}`
+							},
+							method: 'GET',
+							success: (res) => {
+								let collectionList = Array.from(new Set(res.data.collections))
+								if (collectionList.indexOf(String(this.id)) >= 0) {
+									this.collectFlag = true
+								}
+								console.log(collectionList.indexOf(String(this.id)))
+								// if()
+							},
+						})
+					}
+				}),
+				this.timer = setInterval(() => {
+					this.count++
+					// console.log(`Count: ${this.count}`)
+				}, 1000)
+
+		},
+		beforeDestroy() {
+			clearInterval(this.timer)
+			console.log(this.count)
+			uni.request({
+				url: `http://43.140.204.55:5000/online_time/add_seconds/${this.count}`,
+				header: {
+					'Authorization': `Bearer ${uni.getStorageSync('token')}`
+				},
 				method: 'GET',
 				success: (res) => {
-					this.all_videoData = res.data.slice(0, 100)
-					//在视频数据中找到对应的视频
-					for (var i = 0; i < this.all_videoData.length; i++) {
-						if (this.all_videoData[i].title == this.title) {
-							// console.log(this.all_videoData[i]);
-							this.videoData.videoUrl = this.all_videoData[i].m3u8
-							this.htmlText = this.all_videoData[i].text
-							this.id = this.all_videoData[i].id
-						}
-					}
-					uni.request({
-						url: `http://43.140.204.55:5000/my_collection`,
-						header: {
-							'Authorization': `Bearer ${uni.getStorageSync('token')}`
-						},
-						method: 'GET',
-						success: (res) => {							
-							let collectionList=Array.from(new Set(res.data.collections))
-							if(collectionList.indexOf(String(this.id))>=0){
-								this.collectFlag=true
-							}
-							console.log(collectionList.indexOf(String(this.id)))
-							// if()
-						},
-					})
-				}
+					console.log(res)
+				},
 			})
-			
 		},
 		mounted() {
 			// 在自定义组件下，第二个参数传入组件实例 this，以操作组件内 <video> 组件。
@@ -170,6 +192,7 @@
 				},
 			});
 			// #endif
+			this.loading = false
 		},
 		methods: {
 			showTost(params) {
@@ -178,7 +201,7 @@
 				})
 			},
 			// 请求视频数据
-			
+
 			// 收藏功能
 			handleIcon() {
 				if (this.collectFlag == true) {

@@ -100,6 +100,9 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
+    zeroLoading: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/zero-loading/components/zero-loading/zero-loading */ "uni_modules/zero-loading/components/zero-loading/zero-loading").then(__webpack_require__.bind(null, /*! @/uni_modules/zero-loading/components/zero-loading/zero-loading.vue */ 263))
+    },
     uToast: function () {
       return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-toast/u-toast */ "node-modules/uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! uview-ui/components/u-toast/u-toast.vue */ 256))
     },
@@ -170,7 +173,7 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var JCalendar = function JCalendar() {
   __webpack_require__.e(/*! require.ensure | components/calendar/j-calendar */ "components/calendar/j-calendar").then((function () {
-    return resolve(__webpack_require__(/*! @/components/calendar/j-calendar.vue */ 323));
+    return resolve(__webpack_require__(/*! @/components/calendar/j-calendar.vue */ 317));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var app = getApp();
@@ -182,6 +185,7 @@ var _default = {
     return {
       targetDate: "".concat(parseInt(new Date().getFullYear()), "-").concat(parseInt(new Date().getMonth() + 1)),
       signData: [],
+      loading: true,
       collectnum: 0,
       userinfo: {
         heads: 'https://bj.bcebos.com/szbwg/lovecp/img/user/static/heads.png',
@@ -248,13 +252,48 @@ var _default = {
       uni.stopPullDownRefresh();
     }, 1000);
   },
+  mounted: function mounted() {
+    var _this = this;
+    setTimeout(function () {
+      _this.loading = false;
+    }, 2000);
+  },
   methods: {
     showTost: function showTost(params) {
       this.$refs.uToast.show(_objectSpread({}, params));
     },
+    // 上传头像
+    changeAvatar: function changeAvatar() {
+      uni.chooseImage({
+        count: 1,
+        //默认9
+        sizeType: ['original', 'compressed'],
+        //可以指定是原图还是压缩图，默认二者都有
+        sourceType: ['album'],
+        //从相册选择
+        success: function success(res) {
+          console.log(JSON.stringify(res.tempFilePaths));
+          var tempFilePaths = res.tempFilePaths;
+          uni.uploadFile({
+            url: "http://43.140.204.55:5000/avatar/upload",
+            filePath: tempFilePaths[0],
+            name: 'avatar',
+            formData: {
+              'key': 'avatar'
+            },
+            header: {
+              'Authorization': "Bearer ".concat(uni.getStorageSync('token'))
+            },
+            success: function success(uploadRes) {
+              console.log(uploadRes.data);
+            }
+          });
+        }
+      });
+    },
     // 获取签到状态
     getCheckInStatus: function getCheckInStatus() {
-      var _this = this;
+      var _this2 = this;
       uni.request({
         url: "http://43.140.204.55:5000/check_in/statistics",
         header: {
@@ -262,13 +301,13 @@ var _default = {
         },
         method: 'GET',
         success: function success(res) {
-          _this.signData = res.data.check_in_date;
+          _this2.signData = res.data.check_in_date;
         }
       });
     },
     // 获取学习分数
     getScores: function getScores() {
-      var _this2 = this;
+      var _this3 = this;
       uni.request({
         url: "http://43.140.204.55:5000/score",
         header: {
@@ -277,14 +316,14 @@ var _default = {
         method: 'GET',
         success: function success(res) {
           console.log(res);
-          _this2.userinfo.list[0].number = res.data.score;
+          _this3.userinfo.list[0].number = res.data.score;
           // this.userinfo.list[2].number=res.data.pageviews
         }
       });
     },
     // 获取用户信息
     getUserInfo: function getUserInfo() {
-      var _this3 = this;
+      var _this4 = this;
       uni.request({
         url: "http://43.140.204.55:5000/me",
         header: {
@@ -292,13 +331,13 @@ var _default = {
         },
         method: 'GET',
         success: function success(res) {
-          _this3.userinfo.name = res.data.user.username;
+          _this4.userinfo.name = res.data.user.username;
         }
       });
     },
     // 获取浏览量
     getViews: function getViews() {
-      var _this4 = this;
+      var _this5 = this;
       uni.request({
         url: "http://43.140.204.55:5000/pageviews",
         header: {
@@ -306,13 +345,13 @@ var _default = {
         },
         method: 'GET',
         success: function success(res) {
-          _this4.userinfo.list[1].number = res.data.pageviews;
+          _this5.userinfo.list[1].number = res.data.pageviews;
         }
       });
     },
     // 获取收藏数量
     getCollectNum: function getCollectNum() {
-      var _this5 = this;
+      var _this6 = this;
       uni.request({
         url: "http://43.140.204.55:5000/my_collection",
         header: {
@@ -322,13 +361,13 @@ var _default = {
         success: function success(res) {
           console.log(res);
           res.data.collections = Array.from(new Set(res.data.collections));
-          _this5.userinfo.list[2].number = res.data.collections.length;
+          _this6.userinfo.list[2].number = res.data.collections.length;
         }
       });
     },
     // 签到
     updateSign: function updateSign(obj) {
-      var _this6 = this;
+      var _this7 = this;
       var that = this;
       uni.request({
         url: "http://43.140.204.55:5000/check_in",
@@ -337,7 +376,7 @@ var _default = {
         },
         method: 'GET',
         success: function success(res) {
-          _this6.getCheckInStatus();
+          _this7.getCheckInStatus();
           if (res.data.status == 'success') {
             that.showTost({
               'message': '签到成功!',

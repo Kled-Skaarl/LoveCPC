@@ -3,6 +3,7 @@
   "navigationStyle": "custom",
   "enablePullDownRefresh": true,
   "usingComponents": {
+    "zero-loading": "/uni_modules/zero-loading/components/zero-loading/zero-loading",
     "u-toast": "/node-modules/uview-ui/components/u-toast/u-toast",
     "j-calendar": "/components/calendar/j-calendar"
   }

@@ -12,6 +12,9 @@
 				<search all_videoData="tags"></search>
 			</view>
 		</view>
+		<!-- 遮罩 -->
+		<zero-loading v-if="loading" :mask='true'></zero-loading>
+		
 		<view class="page-content">
 			<view class="card-wrap" v-for="item in cardList" :key="item.log_ID">
 				<card :obj="item"></card>
@@ -30,6 +33,7 @@
 	export default {
 		data() {
 			return {
+				loading:true,
 				cardList: [{
 						id: 1,
 						category: '青年专题',
@@ -174,6 +178,11 @@
 			})
 			// this.cardList = TagsNameHelper(tags);
 			console.log(this.cardList)
+		},
+		mounted() {
+			setTimeout(() => {
+				this.loading = false
+			}, 3000)
 		}
 	}
 </script>

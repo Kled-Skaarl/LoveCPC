@@ -25,7 +25,7 @@
 			<view class="line">
 			</view>
 			<view class="content">
-				<view class="icon" v-for="(item,index) in iconList.slice(0,4)" @click="handleClassify(item.id)">
+				<view class="icon" v-for="(item,index) in iconList.slice(0,4)" @click="handleClassify(item)">
 					<view class="itemicon">
 						<i :class="item.icon"></i>
 					</view>
@@ -33,7 +33,7 @@
 				</view>
 			</view>
 			<view class="content">
-				<view class="icon" v-for="(item,index) in iconList.slice(4,8)" @click="handleClassify(item.id)">
+				<view class="icon" v-for="(item,index) in iconList.slice(4,8)" @click="handleClassify(item)">
 					<view class="itemicon">
 						<i :class="item.icon"></i>
 					</view>
@@ -62,6 +62,8 @@
 					</view>
 				</view>
 			</view>
+			<!-- 遮罩 -->
+			<zero-loading v-if="loading" :mask='true'></zero-loading>
 			<view class="body">
 				<view class="videoItem" v-for="(item,index) in this.all_videoData.slice(2,4)"
 					@click="handletoVideoPlay(item.title)">
@@ -88,11 +90,12 @@
 	export default {
 		data() {
 			return {
+				loading:true,
 				all_videoData: [],
 				currentpage: 1,
 				iconList: [{
-						icon: 'iconfont icon-voice',
-						title: '讲话',
+						icon: 'iconfont icon-gongjianshengtaiquan',
+						title: '生态',
 						id: 1
 					},
 					{
@@ -102,32 +105,33 @@
 					},
 					{
 						icon: 'iconfont icon-wenhua',
-						title: '文化',
+						title: '政治',
 						id: 3
 					},
 					{
 						icon: 'iconfont icon-jungongzhang',
-						title: '军事',
+						title: '社会',
 						id: 4
 					},
 					{
-						icon: 'iconfont icon-gongjianshengtaiquan',
-						title: '生态',
+						icon: 'iconfont icon-voice',
+						title: '文化',
+						
 						id: 5
 					},
 					{
 						icon: 'iconfont icon-weibiaoti-',
-						title: '出访',
+						title: '娱乐',
 						id: 6
 					},
 					{
 						icon: 'iconfont icon-dangjian_dangjianhuodongshiguanli',
-						title: '会议',
+						title: '外交',
 						id: 7
 					},
 					{
 						icon: 'iconfont icon-huodongxiangqu',
-						title: '活动',
+						title: '国防',
 						id: 8
 					},
 				],
@@ -176,10 +180,18 @@
 				}
 			}
 		},
+		mounted() {
+			setTimeout(() => {
+				this.loading = false
+			}, 3000)
+		},
 		methods: {
 			//跳转至对应标签下视频
-			handleClassify(id) {
-				console.log(id);
+			handleClassify(obj) {
+				console.log(obj);
+				uni.navigateTo({
+					url: `./videoDetail?title=${obj.title}`
+				})
 			},
 			//跳转至视频详情页
 			handletoVideoDetail() {

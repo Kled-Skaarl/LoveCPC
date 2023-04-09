@@ -6,8 +6,10 @@
 					<view class="top-text">
 						<image src="https://bj.bcebos.com/szbwg/lovecp/img/home/redflag.png" alt="" id="redflag">
 							<view class="text">
-								<image src="https://bj.bcebos.com/szbwg/lovecp/img/home/loveCPC.png" alt="" id="loveCPC">
-									<image src="https://bj.bcebos.com/szbwg/lovecp/img/home/sss.png" alt="" id="lovelearn">
+								<image src="https://bj.bcebos.com/szbwg/lovecp/img/home/loveCPC.png" alt=""
+									id="loveCPC">
+									<image src="https://bj.bcebos.com/szbwg/lovecp/img/home/sss.png" alt=""
+										id="lovelearn">
 							</view>
 
 					</view>
@@ -18,6 +20,8 @@
 				<search></search>
 			</view>
 		</view>
+		<!-- 遮罩 -->
+		<zero-loading v-if="loading" :mask='true'></zero-loading>
 
 		<!-- 首页轮播图 -->
 		<view class="wiper">
@@ -97,6 +101,7 @@
 	export default {
 		data() {
 			return {
+				loading: true,
 				allData: [], //从后端获取的所有数据
 				videoData: [], //存储视频数据
 				// 轮播图片url
@@ -138,10 +143,10 @@
 		onLoad() {
 			// 获取视频数据
 			uni.request({
-				url:`https://bj.bcebos.com/szbwg/lovecp/video.json`,
-				method:'GET',
-				success:(res)=>{
-					this.videoData=res.data.slice(0,100)
+				url: `https://bj.bcebos.com/szbwg/lovecp/video.json`,
+				method: 'GET',
+				success: (res) => {
+					this.videoData = res.data.slice(0, 100)
 					for (let i in this.videoData) {
 						var tempvideoData = {
 							img: '',
@@ -171,15 +176,19 @@
 						id: ''
 					}
 					tempcurrentaffairsData.title = this.allData[i].Title
-					tempcurrentaffairsData.source=this.allData[i].from
+					tempcurrentaffairsData.source = this.allData[i].from
 					tempcurrentaffairsData.id = parseInt(this.allData[i].ID)
 					this.currentaffairsData.push(tempcurrentaffairsData)
 				}
-				this.currentaffairsData=this.currentaffairsData.slice(3,6)
+				this.currentaffairsData = this.currentaffairsData.slice(3, 6)
 				console.log(this.currentaffairsData);
+				// uni.hideLoading();
 			})
-
-
+		},
+		mounted() {
+			setTimeout(() => {
+				this.loading = false
+			}, 3000)
 
 		},
 		methods: {
@@ -202,10 +211,10 @@
 				})
 			},
 			//点击视频跳转到对应视频播放页
-			handletoVideoPlay(key){
+			handletoVideoPlay(key) {
 				// console.log(id);
 				uni.navigateTo({
-					url: '../video/videoPlay?title='+key
+					url: '../video/videoPlay?title=' + key
 				})
 			}
 		}
